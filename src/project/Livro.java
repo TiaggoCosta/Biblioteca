@@ -8,7 +8,7 @@ public class Livro {
     private LocalDate dataPublicacao;
     private String autor;
     private String editora;
-    private Integer numPaginas;
+    private Integer numeroPaginas;
     private Integer isbn;
     
     private Livro(Builder builder) {
@@ -16,7 +16,7 @@ public class Livro {
         this.dataPublicacao = builder.dataPublicacao;
         this.autor = builder.autor;
         this.editora = builder.editora;
-        this.numPaginas = builder.numPaginas;
+        this.numeroPaginas = builder.numeroPaginas;
         this.isbn = builder.isbn;
     }
     
@@ -25,7 +25,7 @@ public class Livro {
         private LocalDate dataPublicacao;
         private String autor;
         private String editora;
-        private Integer numPaginas;
+        private Integer numeroPaginas;
         private Integer isbn;
         
         public Builder(){
@@ -52,8 +52,8 @@ public class Livro {
         	return this;
         }
         
-        public Builder withNumPaginas(Integer numPaginas) {
-        	this.numPaginas = numPaginas;
+        public Builder withNumeroPaginas(Integer numeroPaginas) {
+        	this.numeroPaginas = numeroPaginas;
         	return this;
         }
         
@@ -83,8 +83,8 @@ public class Livro {
 		return editora;
 	}
 
-	public Integer getNumPaginas() {
-		return numPaginas;
+	public Integer getNumeroPaginas() {
+		return numeroPaginas;
 	}
 
 	public Integer getIsbn() {
@@ -102,8 +102,8 @@ public class Livro {
 		sb.append(autor);
 		sb.append(", editora=");
 		sb.append(editora);
-		sb.append(", numPaginas=");
-		sb.append(numPaginas);
+		sb.append(", numeroPaginas=");
+		sb.append(numeroPaginas);
 		sb.append(", isbn=");
 		sb.append(isbn);
 		sb.append("]");
