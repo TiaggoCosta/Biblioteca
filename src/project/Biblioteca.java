@@ -2,6 +2,11 @@ package project;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import project.models.Cliente;
+import project.models.Emprestimo;
+import project.models.Livro;
+
 import java.time.LocalDate;
 
 public class Biblioteca {

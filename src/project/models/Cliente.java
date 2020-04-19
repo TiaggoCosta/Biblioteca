@@ -1,4 +1,4 @@
-package project;
+package project.models;
 
 public class Cliente {
 	
