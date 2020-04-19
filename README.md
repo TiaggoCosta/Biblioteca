@@ -11,3 +11,15 @@ A classe Biblioteca implementa o padrão singleton, uma vez que durante a execu�
 * Builder
 
 As classes Livro e Periodico implementam o padrão Builder para criação dos objetos. Ele é útil para estas classes pois elas apresentam diversos atributos e assim a sua criação fica mais dinâmica, sem a necessidade de diversos construtores com parâmetros diferentes.
+
+* Facade
+
+TBD
+
+* Factory
+
+TBD
+
+* Strategy
+
+TBD
