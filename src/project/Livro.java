@@ -1,19 +1,11 @@
 package project;
 
-<<<<<<< HEAD
 import java.time.LocalDate;
-=======
-import java.util.Date;
->>>>>>> 8097326fd1bf6543453f01d191b7d19aa87b758f
 
 public class Livro {
     
     private String titulo;
-<<<<<<< HEAD
     private LocalDate dataPublicacao;
-=======
-    private Date dataPublicacao;
->>>>>>> 8097326fd1bf6543453f01d191b7d19aa87b758f
     private String autor;
     private String editora;
     private Integer numPaginas;
@@ -30,11 +22,7 @@ public class Livro {
     
     public static class Builder {
         private String titulo;
-<<<<<<< HEAD
         private LocalDate dataPublicacao;
-=======
-        private Date dataPublicacao;
->>>>>>> 8097326fd1bf6543453f01d191b7d19aa87b758f
         private String autor;
         private String editora;
         private Integer numPaginas;
@@ -49,11 +37,7 @@ public class Livro {
             return this;
         }
         
-<<<<<<< HEAD
         public Builder withDataPublicacao(LocalDate dataPublicacao) {
-=======
-        public Builder withDataPublicacao(Date dataPublicacao) {
->>>>>>> 8097326fd1bf6543453f01d191b7d19aa87b758f
             this.dataPublicacao = dataPublicacao;
             return this;
         }
@@ -87,11 +71,7 @@ public class Livro {
 		return titulo;
 	}
 
-<<<<<<< HEAD
 	public LocalDate getDataPublicacao() {
-=======
-	public Date getDataPublicacao() {
->>>>>>> 8097326fd1bf6543453f01d191b7d19aa87b758f
 		return dataPublicacao;
 	}
 
