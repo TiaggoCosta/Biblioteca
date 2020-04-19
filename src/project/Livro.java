@@ -10,6 +10,7 @@ public class Livro {
     private String editora;
     private Integer numeroPaginas;
     private Integer isbn;
+	private MeioPublicacao meioPublicacao;
     
     private Livro(Builder builder) {
         this.titulo = builder.titulo;
@@ -18,6 +19,7 @@ public class Livro {
         this.editora = builder.editora;
         this.numeroPaginas = builder.numeroPaginas;
         this.isbn = builder.isbn;
+        this.meioPublicacao = builder.meioPublicacao;       
     }
     
     public static class Builder {
@@ -27,6 +29,7 @@ public class Livro {
         private String editora;
         private Integer numeroPaginas;
         private Integer isbn;
+    	private MeioPublicacao meioPublicacao;
         
         public Builder(){
             
@@ -62,6 +65,11 @@ public class Livro {
             return this;
         }
         
+        public Builder withMeioPublicacao(MeioPublicacao meioPublicacao) {
+			this.meioPublicacao = meioPublicacao;
+			return this;
+		}
+        
         public Livro build() {
             return new Livro(this);
         }
@@ -90,6 +98,10 @@ public class Livro {
 	public Integer getIsbn() {
 		return isbn;
 	}
+	
+	public MeioPublicacao getMeioPublicacao() {
+		return meioPublicacao;
+	}
 
 	@Override
 	public String toString() {
@@ -106,6 +118,8 @@ public class Livro {
 		sb.append(numeroPaginas);
 		sb.append(", isbn=");
 		sb.append(isbn);
+		sb.append(", meioPublicacao=");
+		sb.append(meioPublicacao);
 		sb.append("]");
 		return sb.toString();
 	}
