@@ -1,13 +1,13 @@
 package project;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import project.models.Cliente;
 import project.models.Emprestimo;
 import project.models.Livro;
-
-import java.time.LocalDate;
+import project.models.Periodico;
 
 public class Biblioteca {
     private static Biblioteca instance = new Biblioteca();
@@ -19,12 +19,22 @@ public class Biblioteca {
     private Biblioteca() {
     }
     
-    private static List<Livro> livros = new ArrayList<>();
+    private List<Livro> livros = new ArrayList<>();
+    private List<Periodico> periodicos = new ArrayList<>();
     private static List<Cliente> clientes = new ArrayList<>();
     private static List<Emprestimo> emprestimos = new ArrayList<>();
     
-    // Livros
-    public void insereLivro(Livro livro) {
+    // Periodicos
+    public List<Periodico> getPeriodicos() {
+		return periodicos;
+    }    
+
+	// Livros
+    public List<Livro> getLivros() {
+		return livros;
+	}
+
+	public void insereLivro(Livro livro) {
         livros.add(livro);
     }
     
@@ -111,7 +121,7 @@ public class Biblioteca {
     }
     
     // busca indice
-    public static int buscaIndiceLivro(String tituloLivro) {
+    public  int buscaIndiceLivro(String tituloLivro) {
         int indice = 0;
 
         for(Livro livro : livros) {
@@ -122,7 +132,7 @@ public class Biblioteca {
         return -1;
     }
     
-    public static int buscaIndiceLivro(Integer isbn) {
+    public int buscaIndiceLivro(Integer isbn) {
         int indice = 0;
 
         for(Livro livro : livros) {
