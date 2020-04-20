@@ -22,7 +22,7 @@ public class Biblioteca {
     private List<Livro> livros = new ArrayList<>();
     private List<Periodico> periodicos = new ArrayList<>();
     private static List<Cliente> clientes = new ArrayList<>();
-    private static List<Emprestimo> emprestimos = new ArrayList<>();
+    private List<Emprestimo> emprestimos = new ArrayList<>();
     
     // Periodicos
     public List<Periodico> getPeriodicos() {
@@ -92,13 +92,17 @@ public class Biblioteca {
         int indice = buscaIndiceCliente(idCliente);
         return clientes.get(indice);
     }
-    // Empréstimos
+    // Emprestimos
+    public List<Emprestimo> getEmprestimos() {
+		return emprestimos;
+	}
+    
     public void registraRetirada(Cliente cliente, Livro livro, LocalDate dataRetirada) {
         Emprestimo emprestimo = new Emprestimo(cliente, livro, dataRetirada);
         emprestimos.add(emprestimo);
     }
-    
-    public void registraRetirada(Cliente cliente, Livro[] livros, LocalDate dataRetirada) {
+
+	public void registraRetirada(Cliente cliente, Livro[] livros, LocalDate dataRetirada) {
         for (Livro livro : livros) {
 	        Emprestimo emprestimo = new Emprestimo(cliente, livro, dataRetirada);
             emprestimos.add(emprestimo);
