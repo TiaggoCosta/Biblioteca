@@ -27,7 +27,22 @@ public class Emprestimo {
         return this.dataRetirada;
     }
     
-    public LocalDate getDataDevolucao() {
+	public LocalDate getDataDevolucao() {
         return this.dataDevolucao;
     }
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("Emprestimo [cliente=");
+		sb.append(cliente);
+		sb.append(", livro=");
+		sb.append(livro);
+		sb.append(", dataRetirada=");
+		sb.append(dataRetirada);
+		sb.append(", dataDevolucao=");
+		sb.append(dataDevolucao);
+		sb.append("]");
+		return sb.toString();
+	}
 }
