@@ -28,6 +28,10 @@ public class Biblioteca {
     public List<Periodico> getPeriodicos() {
 		return periodicos;
     }    
+    
+    public void inserePeriodico(Periodico periodico) {
+    	periodicos.add(periodico);
+    }
 
 	// Livros
     public List<Livro> getLivros() {
