@@ -15,9 +15,19 @@ public class AcervoPeriodicosRelatorio implements IReportStrategy {
 	@Override
 	public void showData() {
 		List<Periodico> periodicos = Biblioteca.getInstance().getPeriodicos();
+		
+		System.out.println("-----------------------------------------------------------------------------");
+	    System.out.printf("%20s %30s %20s", "ISSN", "Nome", "Editora");
+	    System.out.println();
+	    System.out.println("-----------------------------------------------------------------------------");
+		
 		for(Periodico periodico : periodicos) {
-			System.out.println(periodico.toString());
+			System.out.format("%20s %30s %20s",
+					periodico.getIssn(), periodico.getNome(), periodico.getEditora());
+	        System.out.println();
 		}
+		
+		System.out.println("-----------------------------------------------------------------------------");
 	}
 
 }
