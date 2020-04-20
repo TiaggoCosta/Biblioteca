@@ -14,10 +14,10 @@ public class AcervoLivrosRelatorio implements IReportStrategy {
 	public void showData() {
 		List<Livro> livros = Biblioteca.getInstance().getLivros();
 		
-		System.out.println("------------------------------------------------------------------------------------");
+		System.out.println("----------------------------------------------------------------------------------------");
 	    System.out.printf("%20s %20s %20s %20s", "Titulo", "Autor", "Numero Paginas", "Editora");
 	    System.out.println();
-	    System.out.println("------------------------------------------------------------------------------------");
+	    System.out.println("----------------------------------------------------------------------------------------");
 		
 		for(Livro livro : livros) {
 			System.out.format("%20s %20s %20s %20s",
@@ -25,6 +25,6 @@ public class AcervoLivrosRelatorio implements IReportStrategy {
 	        System.out.println();
 		}
 		
-		System.out.println("------------------------------------------------------------------------------------");
+		System.out.println("----------------------------------------------------------------------------------------");
 	}
 }
