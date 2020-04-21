@@ -2,14 +2,14 @@ package project.report;
 
 public class ReportFactory {
 	
-	public static IReportStrategy GetRelatorio(String nomeRelatorio){
+	public static IReportStrategy getRelatorio(Integer idRelatorio){
 		IReportStrategy strategy = null;
 		
-		if (nomeRelatorio.equalsIgnoreCase("Acervo Livros")) {
+		if (idRelatorio.equals(Integer.valueOf(1))) {
 			strategy = new AcervoLivrosRelatorio();
-		} else if (nomeRelatorio.equalsIgnoreCase("Acervo Periodicos")) {
+		} else if (idRelatorio.equals(Integer.valueOf(2))) {
 			strategy = new AcervoPeriodicosRelatorio();
-		} else if (nomeRelatorio.equalsIgnoreCase("Livros Atrasados")) {
+		} else if (idRelatorio.equals(Integer.valueOf(3))) {
 			strategy = new LivrosEntregaAtrasadaRelatorio();
 		}
 		
