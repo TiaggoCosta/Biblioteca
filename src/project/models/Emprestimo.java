@@ -1,12 +1,14 @@
 package project.models;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class Emprestimo {
     private Cliente cliente;
     private Livro livro;
     private LocalDate dataRetirada;
     private LocalDate dataDevolucao;
+    private Double valorMulta;
     
     public Emprestimo(Cliente cliente, Livro livro, LocalDate dataRetirada) {
         this.cliente = cliente;
@@ -47,6 +49,18 @@ public class Emprestimo {
         this.dataDevolucao = dataDevolucao;
     }
 
+    public Double getValorMulta() {
+        long noOfDaysBetween = ChronoUnit.DAYS.between(dataDevolucao, LocalDate.now());
+        
+        if (noOfDaysBetween > 0) {
+            this.valorMulta = noOfDaysBetween * 0.50;
+        } else {
+            this.valorMulta = 0.0;
+        }
+
+        return this.valorMulta;
+    } 
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
@@ -57,7 +71,9 @@ public class Emprestimo {
 		sb.append(", dataRetirada=");
 		sb.append(dataRetirada);
 		sb.append(", dataDevolucao=");
-		sb.append(dataDevolucao);
+        sb.append(dataDevolucao);
+        sb.append(", valorMulta=");
+        sb.append(getValorMulta());
 		sb.append("]");
 		return sb.toString();
 	}
