@@ -3,6 +3,7 @@ package project;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import project.models.Cliente;
 import project.models.Emprestimo;
@@ -82,7 +83,7 @@ public class Biblioteca {
         clientes.remove(indice);
     }
     
-    public void removeClientePorId(Integer idCliente) {
+    public void removeClientePorId(UUID idCliente) {
         int indice = buscaIndiceCliente(idCliente);
         clientes.remove(indice);
     }
@@ -92,7 +93,7 @@ public class Biblioteca {
         return clientes.get(indice);
     }
     
-    public Cliente buscaPorId(Integer idCliente) {
+    public Cliente buscaPorId(UUID idCliente) {
         int indice = buscaIndiceCliente(idCliente);
         return clientes.get(indice);
     }
@@ -162,7 +163,7 @@ public class Biblioteca {
         return -1;
     }
     
-    public static int buscaIndiceCliente(Integer idCliente) {
+    public static int buscaIndiceCliente(UUID idCliente) {
         int indice = 0;
 
         for(Cliente cliente : clientes) {
