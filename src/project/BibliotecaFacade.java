@@ -1,11 +1,15 @@
 package project;
 
 import java.util.Scanner;
+
 import project.models.Cliente;
+import project.report.IReportStrategy;
+import project.report.ReportFactory;
 
 public class BibliotecaFacade {
 
     Biblioteca biblioteca = Biblioteca.getInstance();
+    Scanner scanner = new Scanner(System.in);
         
     public void novoCliente (){
         System.out.println("Entre com os dados do novo cliente: ");
@@ -23,9 +27,7 @@ public class BibliotecaFacade {
         }
     }
     
-    Scanner scanner = new Scanner(System.in);
-    
-    public Cliente leDadosCliente(){
+    private Cliente leDadosCliente(){
         String nome = null, email = null;
         System.out.println("Digite o nome do cliente: ");
         nome =  scanner.nextLine();
@@ -33,5 +35,20 @@ public class BibliotecaFacade {
         email =  scanner.nextLine();                     // leitura do nome e email(validar? @ e .com)
         Cliente novoCliente = new Cliente(nome,email,1); // criar id serializavel na classe cliente
         return novoCliente;
+    }
+    
+    public void selecionaRelatorio() {
+    	System.out.println("Digite o nome do Relatório: ");
+    	String nomeRelatorio = scanner.nextLine();
+    	IReportStrategy reportStrategy = ReportFactory.GetRelatorio(nomeRelatorio);
+    	
+    	if(reportStrategy != null) {
+    		reportStrategy.showData();
+    	} else {
+    		System.out.println("Relatório "+ nomeRelatorio + " não encontrado.");
+    	}
+    	
+    	System.out.println("\nPressione Enter para Sair...");
+		scanner.nextLine();
     }
 }
