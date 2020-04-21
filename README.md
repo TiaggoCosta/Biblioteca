@@ -24,3 +24,5 @@ A classe ReportFactory é a responsável por retornar a Strategy correta.
 Todas as classes de relatório devem implementar a interface IReportStrategy para que tenham o método showData() onde a lógica para mostrar o relatório deve ser implementada. Um exemplo é a classe LivrosEntregaAtrasadaRelatorio.
 
 ## How to Run
+
+🚧 TBD 🚧
