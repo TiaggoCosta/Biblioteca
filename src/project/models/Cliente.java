@@ -1,15 +1,17 @@
 package project.models;
 
+import java.util.UUID;
+
 public class Cliente {
 	
 	private String nome;
 	private String email;
-	private Integer id;
+	private UUID id;
 	
-	public Cliente(String nome, String email, Integer id) {
+	public Cliente(String nome, String email) {
 		this.nome = nome;
 		this.email = email;
-		this.id = id;
+		this.id = UUID.randomUUID();
 	}
 
 	public String getNome() {
@@ -28,11 +30,11 @@ public class Cliente {
 		this.email = email;
 	}
 
-	public Integer getId() {
+	public UUID getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 

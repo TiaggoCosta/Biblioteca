@@ -64,8 +64,8 @@ public class BibliotecaFacade {
             nome =  scanner.nextLine();
         System.out.println("Digite o email do cliente: ");
         while(email.isEmpty())
-            email =  scanner.nextLine();                     // leitura do nome e email(validar? @ e .com)
-        Cliente novoCliente = new Cliente(nome,email,1); // criar id serializavel na classe cliente
+            email =  scanner.nextLine(); // leitura do nome e email(validar? @ e .com)
+        Cliente novoCliente = new Cliente(nome,email);
         return novoCliente;
     }
     
