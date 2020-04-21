@@ -4,9 +4,6 @@ import java.util.Scanner;
 
 public class Main {
 
-    /**
-     * @param args
-     */
     public static void main(String[] args) {
         System.out.println("Bem vindo, bibliotecário!");
         Scanner scanner = new Scanner(System.in);
@@ -20,6 +17,7 @@ public class Main {
                 case 0:
                     System.out.println ( "Desligando o sistema..." );
                     ligado = false;
+                    scanner.close();
                     break;
                 case 1:
                     System.out.println ( "Você selecionou a opção 1" );
