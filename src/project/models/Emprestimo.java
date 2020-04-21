@@ -18,17 +18,33 @@ public class Emprestimo {
     public Cliente getCliente() {
         return this.cliente;
     }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
     
     public Livro getLivro() {
         return this.livro;
+    }
+
+    public void setLivro(Livro livro) {
+        this.livro = livro;
     }
     
     public LocalDate getDataRetirada() {
         return this.dataRetirada;
     }
+
+    public void setDataRetirada(LocalDate dataRetirada){
+        this.dataRetirada = dataRetirada;
+    }
     
 	public LocalDate getDataDevolucao() {
         return this.dataDevolucao;
+    }
+
+    public void setDataDevolucao(LocalDate dataDevolucao){
+        this.dataDevolucao = dataDevolucao;
     }
 
 	@Override
