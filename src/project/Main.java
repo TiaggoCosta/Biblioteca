@@ -31,6 +31,10 @@ public class Main {
                     System.out.println ( "Você selecionou a opção 3" );
                     liber.buscaCliente();
                     break;
+                case 4:
+                    System.out.println ( "Você selecionou a opção 4" );
+                    liber.adicionaNovoLivro();;
+                    break;
                 default:
                     System.err.println ( "Opção inválida!" );
             }
@@ -40,7 +44,7 @@ public class Main {
 
     public static void display_menu() {
         System.out.println("---------------------------Menu Principal---------------------------");
-        System.out.println ( "0) Desligar sistema \n1) Gerar Relatório \n2) Novo Cliente\n3) Pesquisar Cliente" );
+        System.out.println ( "0) Desligar sistema \n1) Gerar Relatório \n2) Novo Cliente\n3) Pesquisar Cliente\n4) Novo Livro" );
         System.out.print ( "Seleção " );
     }
 }
