@@ -11,7 +11,7 @@ public class BibliotecaFacade {
     Biblioteca biblioteca = Biblioteca.getInstance();
     Scanner scanner = new Scanner(System.in);
         
-    public void novoCliente (){
+    public void novoCliente () {
         System.out.println("Entre com os dados do novo cliente: ");
         Cliente novoCliente = leDadosCliente();
         System.out.println("Autenticando novo cliente...");
@@ -26,8 +26,38 @@ public class BibliotecaFacade {
             System.out.println(registrado.toString());
         }
     }
+
+    public void buscaCliente() {
+        Cliente cliente = null;
+        System.out.println("Selecione o campo de pesquisa: ");
+        System.out.println ( "0) Sair \n1) ID \n2) Email " );
+        switch (scanner.nextInt()) {
+            case 0:
+                break;
+            case 1:
+                System.out.println("Digite o ID do cliente: ");
+                Integer idCliente = scanner.nextInt();
+                cliente = biblioteca.buscaPorId(idCliente);
+                break;
+            case 2:
+                System.out.println("Digite o email do cliente: ");
+                String emailCliente = scanner.nextLine();
+                cliente = biblioteca.buscaPorEmail(emailCliente);
+                break;
+            default:
+                System.err.println ( "Opção inválida!" );
+                break;
+        }
+        if(cliente != null) {
+            System.out.println("Cliente encontrado: ");
+            System.out.println(cliente.toString());
+        } else {
+            System.out.println("Nenhum cliente atende ao campo pesquisado!");
+        }
+        System.out.println("Retornando ao menu inicial...");
+    }
     
-    private Cliente leDadosCliente(){
+    private Cliente leDadosCliente() {
         String nome = "", email = "";
         System.out.println("Digite o nome do cliente: ");
         while(nome.isEmpty())

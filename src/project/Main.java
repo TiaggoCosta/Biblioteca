@@ -23,24 +23,26 @@ public class Main {
                     break;
                 case 1:
                     System.out.println ( "Você selecionou a opção 1" );
-                    liber.novoCliente();
+                    liber.selecionaRelatorio();
                     break;
                 case 2:
                     System.out.println ( "Você selecionou a opção 2" );
-                    liber.selecionaRelatorio();
+                    liber.novoCliente();
                     break;
                 case 3:
                     System.out.println ( "Você selecionou a opção 3" );
+                    liber.buscaCliente();
                     break;
                 default:
                     System.err.println ( "Opção inválida!" );
             }
         }
+        scanner.close();
     }
 
     public static void display_menu() {
         System.out.println("---------------------------Menu Principal---------------------------");
-        System.out.println ( "0) Desligar sistema \n1) Novo Cliente \n2) Gerar Relatório\n3) Option 3" );
+        System.out.println ( "0) Desligar sistema \n1) Gerar Relatório \n2) Novo Cliente\n3) Pesquisar Cliente" );
         System.out.print ( "Seleção " );
     }
 }
