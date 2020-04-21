@@ -28,11 +28,13 @@ public class BibliotecaFacade {
     }
     
     private Cliente leDadosCliente(){
-        String nome = null, email = null;
+        String nome = "", email = "";
         System.out.println("Digite o nome do cliente: ");
-        nome =  scanner.nextLine();
+        while(nome.isEmpty())
+            nome =  scanner.nextLine();
         System.out.println("Digite o email do cliente: ");
-        email =  scanner.nextLine();                     // leitura do nome e email(validar? @ e .com)
+        while(email.isEmpty())
+            email =  scanner.nextLine();                     // leitura do nome e email(validar? @ e .com)
         Cliente novoCliente = new Cliente(nome,email,1); // criar id serializavel na classe cliente
         return novoCliente;
     }
