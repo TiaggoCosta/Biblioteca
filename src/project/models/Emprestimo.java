@@ -50,10 +50,10 @@ public class Emprestimo {
     }
 
     public Double getValorMulta() {
-        long noOfDaysBetween = ChronoUnit.DAYS.between(dataDevolucao, LocalDate.now());
-        
-        if (noOfDaysBetween > 0) {
-            this.valorMulta = noOfDaysBetween * 0.50;
+        long diasAtrasados = ChronoUnit.DAYS.between(dataDevolucao, LocalDate.now());
+
+        if (diasAtrasados > 0) {
+            this.valorMulta = diasAtrasados * 0.50;
         } else {
             this.valorMulta = 0.0;
         }
