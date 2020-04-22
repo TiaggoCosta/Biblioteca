@@ -6,8 +6,6 @@ import java.util.Scanner;
 import project.models.Cliente;
 import project.models.Livro;
 import project.models.MeioPublicacao;
-import project.report.IReportStrategy;
-import project.report.ReportFactory;
 
 public class BibliotecaFacade {
 
@@ -32,6 +30,8 @@ public class BibliotecaFacade {
 
     public void buscaCliente() {
         Cliente cliente = null;
+        String emailCliente = null;
+        Integer idCliente = null;
         System.out.println("Selecione o campo de pesquisa: ");
         System.out.println ( "0) Sair \n1) ID \n2) Email " );
         switch (scanner.nextInt()) {
@@ -39,23 +39,26 @@ public class BibliotecaFacade {
                 break;
             case 1:
                 System.out.println("Digite o ID do cliente: ");
-                Integer idCliente = scanner.nextInt();
-                cliente = biblioteca.buscaPorId(idCliente);
+                idCliente = scanner.nextInt();
+                //cliente = biblioteca.buscaPorId(idCliente);
                 break;
             case 2:
                 System.out.println("Digite o email do cliente: ");
-                String emailCliente = scanner.nextLine();
+                while(emailCliente == null)
+                    emailCliente = scanner.nextLine();
                 cliente = biblioteca.buscaPorEmail(emailCliente);
                 break;
             default:
                 System.err.println ( "Opção inválida!" );
                 break;
         }
-        if(cliente != null) {
-            System.out.println("Cliente encontrado: ");
-            System.out.println(cliente.toString());
-        } else {
-            System.out.println("Nenhum cliente atende ao campo pesquisado!");
+        if (emailCliente != null ||  idCliente != null) {
+            if(cliente != null) {
+                System.out.println("Cliente encontrado: ");
+                System.out.println(cliente.toString());
+            } else {
+                System.out.println("Nenhum cliente atende ao campo pesquisado!");
+            }
         }
         System.out.println("Retornando ao menu inicial...");
     }
@@ -131,43 +134,5 @@ public class BibliotecaFacade {
         return new Livro.Builder().withTitulo(titulo).withAutor(autor)
                     .withEditora(editora).withIsbn(isbn).withNumeroPaginas(numeroPaginas)
                     .withDataPublicacao(dataPublicacao).build();
-    }
-
-    public void selecionaRelatorio() {
-        Integer opcao;
-        IReportStrategy reportStrategy = null;
-
-        boolean ligado = true;
-    
-        while(ligado) {
-            System.out.println("\nSelecione o Relatório desejado: ");
-            System.out.println(" 1 - Acervo Livros");
-            System.out.println(" 2 - Acervo Periodicos");
-            System.out.println(" 3 - Livros Atrasados");
-            System.out.println(" 0 - Sair");
-                
-            opcao = Integer.valueOf(scanner.nextInt());
-            
-            switch (opcao) {
-                case 1:
-                case 2:
-                case 3:
-                    showRelatorio(opcao, reportStrategy);
-                    break;
-                                        
-                case 0:
-                    ligado = false;
-                    break;
-                    
-                default:
-                    System.err.println ( "Opção inválida!" );
-            }
-            
-        }
-    }
-    
-    private void showRelatorio(Integer opcao, IReportStrategy reportStrategy) {
-        reportStrategy = ReportFactory.getRelatorio(opcao);
-        reportStrategy.showData();
     }
 }

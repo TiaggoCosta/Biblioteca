@@ -7,7 +7,8 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Bem vindo, bibliotecário!");
         Scanner scanner = new Scanner(System.in);
-        BibliotecaFacade liber = new BibliotecaFacade();
+        BibliotecaFacade facade = new BibliotecaFacade();
+        Menu menu = new Menu();
 
         boolean ligado = true;
 
@@ -21,19 +22,19 @@ public class Main {
                     break;
                 case 1:
                     System.out.println ( "Você selecionou a opção 1" );
-                    liber.selecionaRelatorio();
+                    menu.selecionaRelatorio();
                     break;
                 case 2:
                     System.out.println ( "Você selecionou a opção 2" );
-                    liber.novoCliente();
+                    menu.operacoesCliente(facade);
                     break;
                 case 3:
                     System.out.println ( "Você selecionou a opção 3" );
-                    liber.buscaCliente();
+                    
                     break;
                 case 4:
                     System.out.println ( "Você selecionou a opção 4" );
-                    liber.adicionaNovoLivro();;
+                    
                     break;
                 default:
                     System.err.println ( "Opção inválida!" );
@@ -44,7 +45,7 @@ public class Main {
 
     public static void display_menu() {
         System.out.println("---------------------------Menu Principal---------------------------");
-        System.out.println ( "0) Desligar sistema \n1) Gerar Relatório \n2) Novo Cliente\n3) Pesquisar Cliente\n4) Novo Livro" );
-        System.out.print ( "Seleção " );
+        System.out.println ( "0) Desligar sistema \n1) Relatórios \n2) Clientes \n3) Livros \n4) Empréstimos" );
+        System.out.print ( "Seleção: " );
     }
 }
