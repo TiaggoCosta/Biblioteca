@@ -30,7 +30,7 @@ public class Menu {
                     facade.buscaCliente();
                     break;
                 case 3:
-                    // facade.excluiCliente();
+                    facade.excluiCliente();
                     break;                      
                 default:
                     System.err.println ( "Opção inválida!" );

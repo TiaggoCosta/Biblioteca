@@ -11,6 +11,7 @@ public class BibliotecaFacade {
 
     Biblioteca biblioteca = Biblioteca.getInstance();
     Scanner scanner = new Scanner(System.in);
+    Cliente ultimoCliente = null;
         
     public void novoCliente () {
         System.out.println("Entre com os dados do novo cliente: ");
@@ -20,10 +21,12 @@ public class BibliotecaFacade {
         if(indiceCliente == -1) {
             System.out.println("Inserindo cliente aos registros...");
             biblioteca.insereCliente(novoCliente);
+            ultimoCliente = novoCliente;
             System.out.println("Cliente registrado com sucesso!");
         } else {
             System.out.println("Cadastro rejeitado! Cliente já registrado no sistema: ");
             Cliente registrado = biblioteca.buscaPorEmail(novoCliente.getEmail());
+            ultimoCliente = registrado;
             System.out.println(registrado.toString());
         }
     }
@@ -34,6 +37,7 @@ public class BibliotecaFacade {
         Integer idCliente = null;
         System.out.println("Selecione o campo de pesquisa: ");
         System.out.println ( "0) Sair \n1) ID \n2) Email " );
+        System.out.print ( "Seleção: " );
         switch (scanner.nextInt()) {
             case 0:
                 break;
@@ -56,11 +60,44 @@ public class BibliotecaFacade {
             if(cliente != null) {
                 System.out.println("Cliente encontrado: ");
                 System.out.println(cliente.toString());
+                ultimoCliente = cliente;
             } else {
                 System.out.println("Nenhum cliente atende ao campo pesquisado!");
             }
         }
-        System.out.println("Retornando ao menu inicial...");
+        System.out.println("Retornando...");
+    }
+
+    public void excluiCliente() {
+        boolean excluindo = true;
+        while(excluindo) {
+            if(ultimoCliente != null) {
+                System.out.println("Deseja excluir o cadastro do seguinte cliente?");
+                System.out.println(ultimoCliente.toString());
+                System.out.println ( "1) Sim \n2) Não " );
+                System.out.print ( "Seleção: " );
+                int selecao = 0;
+                selecao = scanner.nextInt();
+                switch (selecao) {
+                    case 1:
+                        System.out.println("Excluindo...");
+                        biblioteca.removeCliente(ultimoCliente);
+                        System.out.println("Cliente removido com sucesso!");
+                        excluindo = false;
+                        break;
+                    case 2:
+                        System.out.println("Encaminhando para busca do cliente...");
+                        ultimoCliente = null;
+                        break;
+                    default:
+                        System.err.println ( "Opção inválida!" );
+                        break;
+                }
+            } else {
+                buscaCliente();
+            }
+        }
+        System.out.println("Retornando ao menu cliente...");
     }
     
     private Cliente leDadosCliente() {
