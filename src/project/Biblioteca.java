@@ -53,7 +53,7 @@ public class Biblioteca {
         livros.remove(indice);
     }
     
-    public void removeLivroPorNome(String tituloLivro) {
+    public void removeLivroPorTitulo(String tituloLivro) {
         int indice = buscaIndiceLivro(tituloLivro);
         livros.remove(indice);
     }

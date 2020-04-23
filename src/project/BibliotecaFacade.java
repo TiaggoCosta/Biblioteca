@@ -12,6 +12,7 @@ public class BibliotecaFacade {
     Biblioteca biblioteca = Biblioteca.getInstance();
     Scanner scanner = new Scanner(System.in);
     Cliente ultimoCliente = null;
+    Livro ultimoLivro = null;
         
     public void novoCliente () {
         System.out.println("Entre com os dados do novo cliente: ");
@@ -100,25 +101,13 @@ public class BibliotecaFacade {
         System.out.println("Retornando ao menu cliente...");
     }
     
-    private Cliente leDadosCliente() {
-        String nome = "", email = "";
-        System.out.println("Digite o nome do cliente: ");
-        while(nome.isEmpty())
-            nome =  scanner.nextLine();
-        System.out.println("Digite o email do cliente: ");
-        while(email.isEmpty())
-            email =  scanner.nextLine(); // leitura do nome e email(validar? @ e .com)
-        Cliente novoCliente = new Cliente(nome,email);
-        return novoCliente;
-    }
-    
     public void adicionaNovoLivro() {
         System.out.println("Entre com os dados do novo livro: ");
         Livro novoLivro = lerDadosLivro();
         System.out.println("Autenticando novo cliente...");
-        int indiceCliente = biblioteca.buscaIndiceLivro(novoLivro.getIsbn());
+        int indiceLivro = biblioteca.buscaIndiceLivro(novoLivro.getIsbn());
     
-        if(indiceCliente == -1) {
+        if(indiceLivro == -1) {
             System.out.println("Adicionando livro no acervo...");
             biblioteca.insereLivro(novoLivro);
             System.out.println("Livro adicionado com sucesso!");
@@ -128,6 +117,76 @@ public class BibliotecaFacade {
             Livro registrado = biblioteca.buscaPorISBN(novoLivro.getIsbn());
             System.out.println(registrado.toString());
         }
+    }
+
+    public void buscaLivro() {
+        Livro livro = null;
+        String titulo = null;
+        Integer isbn = null;
+        System.out.println("Selecione o campo de pesquisa: ");
+        System.out.println ( "0) Sair \n1) ISBN \n2) Titulo " );
+        System.out.print ( "Seleção: " );
+        switch (scanner.nextInt()) {
+            case 0:
+                break;
+            case 1:
+                System.out.println("Digite o ISBN do livro: ");
+                while(isbn == null)
+                    isbn = scanner.nextInt();
+                livro = biblioteca.buscaPorISBN(isbn);
+                break;
+            case 2:
+                System.out.println("Digite o titulo do livro: ");
+                while(titulo == null)
+                    titulo = scanner.nextLine();
+                livro = biblioteca.buscaPorTitulo(titulo);
+                break;
+            default:
+                System.err.println ( "Opção inválida!" );
+                break;
+        }
+        if (titulo != null ||  isbn != null) {
+            if(livro != null) {
+                System.out.println("Livro encontrado: ");
+                System.out.println(livro.toString());
+                ultimoLivro = livro;
+            } else {
+                System.out.println("Nenhum livro atende ao campo pesquisado!");
+            }
+        }
+        System.out.println("Retornando...");
+    }
+
+    public void excluiLivro() {
+        boolean excluindo = true;
+        while(excluindo) {
+            if(ultimoLivro != null) {
+                System.out.println("Deseja excluir o cadastro do seguinte livro?");
+                System.out.println(ultimoLivro.toString());
+                System.out.println ( "1) Sim \n2) Não " );
+                System.out.print ( "Seleção: " );
+                int selecao = 0;
+                selecao = scanner.nextInt();
+                switch (selecao) {
+                    case 1:
+                        System.out.println("Excluindo...");
+                        biblioteca.removeLivro(ultimoLivro);
+                        System.out.println("Livro removido com sucesso!");
+                        excluindo = false;
+                        break;
+                    case 2:
+                        System.out.println("Encaminhando para busca do livro...");
+                        ultimoLivro = null;
+                        break;
+                    default:
+                        System.err.println ( "Opção inválida!" );
+                        break;
+                }
+            } else {
+                buscaLivro();
+            }
+        }
+        System.out.println("Retornando ao menu livro...");
     }
     
     private Livro lerDadosLivro() {
@@ -171,5 +230,17 @@ public class BibliotecaFacade {
         return new Livro.Builder().withTitulo(titulo).withAutor(autor)
                     .withEditora(editora).withIsbn(isbn).withNumeroPaginas(numeroPaginas)
                     .withDataPublicacao(dataPublicacao).build();
+    }
+
+    private Cliente leDadosCliente() {
+        String nome = "", email = "";
+        System.out.println("Digite o nome do cliente: ");
+        while(nome.isEmpty())
+            nome =  scanner.nextLine();
+        System.out.println("Digite o email do cliente: ");
+        while(email.isEmpty())
+            email =  scanner.nextLine(); // leitura do nome e email(validar? @ e .com)
+        Cliente novoCliente = new Cliente(nome,email);
+        return novoCliente;
     }
 }

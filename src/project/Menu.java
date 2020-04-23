@@ -54,13 +54,13 @@ public class Menu {
                     ligado = false;
                     break;
                 case 1:
-                    // facade.novoLivro();
+                    facade.adicionaNovoLivro();
                     break;
                 case 2:
-                    // facade.buscaLivro();
+                    facade.buscaLivro();
                     break;
                 case 3:
-                    // facade.excluiLivro();
+                    facade.excluiLivro();
                     break;                      
                 default:
                     System.err.println ( "Opção inválida!" );

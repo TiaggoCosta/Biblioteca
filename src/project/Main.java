@@ -21,19 +21,15 @@ public class Main {
                     scanner.close();
                     break;
                 case 1:
-                    System.out.println ( "Você selecionou a opção 1" );
                     menu.selecionaRelatorio();
                     break;
                 case 2:
-                    System.out.println ( "Você selecionou a opção 2" );
                     menu.operacoesCliente(facade);
                     break;
                 case 3:
-                    System.out.println ( "Você selecionou a opção 3" );
                     menu.operacoesLivros(facade);
                     break;
                 case 4:
-                    System.out.println ( "Você selecionou a opção 4" );
                     menu.operacoesEmprestimos(facade);
                     break;
                 default:
