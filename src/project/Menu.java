@@ -38,6 +38,66 @@ public class Menu {
         }
     }
 
+    public void operacoesLivros(BibliotecaFacade facade) {
+        Integer opcao;
+        boolean ligado = true;
+    
+        while(ligado) {
+            System.out.println("--------------------------- Menu Livros ---------------------------");
+            System.out.println ( "0) Sair \n1) Novo Livro \n2) Pesquisar Livros \n3) Excluir Livros" );
+            System.out.print ( "Seleção: " );
+                
+            opcao = Integer.valueOf(scanner.nextInt());
+            
+            switch (opcao) {
+                case 0:
+                    ligado = false;
+                    break;
+                case 1:
+                    // facade.novoLivro();
+                    break;
+                case 2:
+                    // facade.buscaLivro();
+                    break;
+                case 3:
+                    // facade.excluiLivro();
+                    break;                      
+                default:
+                    System.err.println ( "Opção inválida!" );
+            }
+        }
+    }
+
+    public void operacoesEmprestimos(BibliotecaFacade facade) {
+        Integer opcao;
+        boolean ligado = true;
+    
+        while(ligado) {
+            System.out.println("--------------------------- Menu Empréstimos ---------------------------");
+            System.out.println ( "0) Sair \n1) Registrar Retirada \n2) Registrar Devolução \n3) Consultar Empréstimos" );
+            System.out.print ( "Seleção: " );
+                
+            opcao = Integer.valueOf(scanner.nextInt());
+            
+            switch (opcao) {
+                case 0:
+                    ligado = false;
+                    break;
+                case 1:
+                    // facade.retiraLivro();
+                    break;
+                case 2:
+                    // facade.devolveLivro();
+                    break;
+                case 3:
+                    // facade.consultaEmprestimo;
+                    break;                      
+                default:
+                    System.err.println ( "Opção inválida!" );
+            }
+        }
+    }
+
     public void selecionaRelatorio() {
         Integer opcao;
         IReportStrategy reportStrategy = null;
@@ -45,11 +105,9 @@ public class Menu {
         boolean ligado = true;
     
         while(ligado) {
-            System.out.println("\nSelecione o Relatório desejado: ");
-            System.out.println(" 1 - Acervo Livros");
-            System.out.println(" 2 - Acervo Periodicos");
-            System.out.println(" 3 - Livros Atrasados");
-            System.out.println(" 0 - Sair");
+            System.out.println("--------------------------- Menu Relatórios ---------------------------");
+            System.out.println ( "0) Sair \n1) Acervo Livros \n2) Acervo Periodicos \n3) Livros Atrasados" );
+            System.out.print ( "Seleção: " );
                 
             opcao = Integer.valueOf(scanner.nextInt());
             
