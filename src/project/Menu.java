@@ -84,7 +84,7 @@ public class Menu {
                     ligado = false;
                     break;
                 case 1:
-                    // facade.retiraLivro();
+                    facade.registraRetirada();
                     break;
                 case 2:
                     // facade.devolveLivro();

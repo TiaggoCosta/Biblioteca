@@ -188,6 +188,63 @@ public class BibliotecaFacade {
         }
         System.out.println("Retornando ao menu livro...");
     }
+
+    public void registraRetirada() {
+        Cliente clienteRetirando = null;
+        while(clienteRetirando == null){
+            if(ultimoCliente != null) {
+                System.out.println("Este cliente está requisitando a retirada?");
+                    System.out.println(ultimoCliente.toString());
+                    System.out.println ( "1) Sim \n2) Não " );
+                    System.out.print ( "Seleção: " );
+                    int selecao = 0;
+                    selecao = scanner.nextInt();
+                    switch (selecao) {
+                        case 1:
+                            clienteRetirando = ultimoCliente;
+                            break;
+                        case 2:
+                            System.out.println("Encaminhando para busca do cliente...");
+                            ultimoCliente = null;
+                            break;
+                        default:
+                            System.err.println ( "Opção inválida!" );
+                            break;
+                    }
+            } else {
+                buscaCliente();
+            }
+        }
+        System.out.println("Checando status do cliente...");
+        // ver se tem debito pendente ou livro atrasado
+        System.out.println("Encaminhando para busca de livros...");
+        boolean adicionandoLivros = true;
+        Livro livroRetirado = null;
+        String livrosRetirados = "";
+        while (adicionandoLivros) {
+            buscaLivro();
+            livroRetirado = ultimoLivro;
+            biblioteca.registraRetirada(clienteRetirando, livroRetirado, LocalDate.now());
+            livrosRetirados += livroRetirado.toString() + "\n"; 
+            System.err.println ( "Deseja retirar mais livros?" );
+            System.out.println ( "1) Sim \n2) Não " );
+                System.out.print ( "Seleção: " );
+                int escolha = 0;
+                while (escolha != 1 || escolha != 2) {
+                    escolha = scanner.nextInt();
+                }
+                if(escolha == 1){
+                    continue;
+                } else {
+                    adicionandoLivros = false;
+                }
+        }
+        System.out.println("Registrando retirada...");
+        System.out.println("Dados da retirada: ");
+        System.out.println(clienteRetirando.toString());
+        System.out.println(livrosRetirados);
+        System.out.println("Data de devolução: " + LocalDate.now().plusMonths(1));
+    }
     
     private Livro lerDadosLivro() {
         String titulo = "";
