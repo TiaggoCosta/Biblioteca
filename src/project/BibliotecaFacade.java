@@ -120,7 +120,7 @@ public class BibliotecaFacade {
 
     public void buscaLivro() {
         Livro livro = null;
-        String titulo = null;
+        String titulo = "";
         Integer isbn = null;
         System.out.println("Selecione o campo de pesquisa: ");
         System.out.println ( "0) Sair \n1) ISBN \n2) Titulo " );
@@ -130,14 +130,13 @@ public class BibliotecaFacade {
                 break;
             case 1:
                 System.out.println("Digite o ISBN do livro: ");
-                while(isbn == null)
-                    isbn = scanner.nextInt();
+                isbn = scanner.nextInt();
                 livro = biblioteca.buscaPorISBN(isbn);
                 break;
             case 2:
                 System.out.println("Digite o titulo do livro: ");
-                while(titulo == null)
-                    titulo = scanner.nextLine();
+                while(titulo.isEmpty())
+                   titulo = scanner.nextLine();
                 livro = biblioteca.buscaPorTitulo(titulo);
                 break;
             default:
