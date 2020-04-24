@@ -8,7 +8,6 @@ import java.util.UUID;
 import project.models.Cliente;
 import project.models.Emprestimo;
 import project.models.Livro;
-import project.models.Periodico;
 
 public class Biblioteca {
     private static Biblioteca instance = new Biblioteca();
@@ -21,18 +20,8 @@ public class Biblioteca {
     }
     
     private List<Livro> livros = new ArrayList<>();
-    private List<Periodico> periodicos = new ArrayList<>();
     private static List<Cliente> clientes = new ArrayList<>();
     private List<Emprestimo> emprestimos = new ArrayList<>();
-    
-    // Periodicos
-    public List<Periodico> getPeriodicos() {
-		return periodicos;
-    }    
-    
-    public void inserePeriodico(Periodico periodico) {
-    	periodicos.add(periodico);
-    }
 
 	// Livros
     public List<Livro> getLivros() {
