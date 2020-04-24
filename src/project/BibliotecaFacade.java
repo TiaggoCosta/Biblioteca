@@ -50,7 +50,7 @@ public class BibliotecaFacade {
             case 2:
                 System.out.println("Digite o email do cliente: ");
                 while(emailCliente == null)
-                    emailCliente = scanner.nextLine();
+                    emailCliente = scanner.next();
                 cliente = biblioteca.buscaPorEmail(emailCliente);
                 break;
             default:
