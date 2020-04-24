@@ -48,7 +48,7 @@ public class BibliotecaFacade {
                 break;
             case 2:
                 System.out.println("Digite o email do cliente: ");
-                while(emailCliente == null)
+                // while(emailCliente == null)
                     emailCliente = scanner.next();
                 cliente = biblioteca.buscaPorEmail(emailCliente);
                 break;
@@ -245,42 +245,27 @@ public class BibliotecaFacade {
         System.out.println("Data de devolução: " + LocalDate.now().plusMonths(1));
     }
     
-    private Livro lerDadosLivro() {
-        String titulo = "";
-        LocalDate dataPublicacao = null;
-        String autor = "";
-        String editora = "";
-        Integer numeroPaginas = null;
-        Integer isbn = null;
-    
+    private Livro lerDadosLivro() {    
         System.out.println("Digite o titulo do livro: ");
-        while(titulo.isEmpty())
-            titulo =  scanner.nextLine();
+        String titulo =  scanner.nextLine();
     
         System.out.println("Digite o autor do livro: ");
-        while(autor.isEmpty())
-            autor =  scanner.nextLine();
+        String autor =  scanner.nextLine();
     
         System.out.println("Digite a editora do livro: ");
-        while(editora.isEmpty())
-            editora =  scanner.nextLine();
+        String editora =  scanner.nextLine();
     
         System.out.println("Digite o isbn do livro: ");
-        while(isbn == null)
-            isbn =  scanner.nextInt();
+        Integer isbn =  scanner.nextInt();
     
         System.out.println("Digite a quantidade de páginas do livro: ");
-        while(numeroPaginas == null)
-            numeroPaginas =  scanner.nextInt();
+        Integer numeroPaginas =  scanner.nextInt();
     
         System.out.println("Digite a data de publicação do livro no formato DD-MM-AA: ");
-        String data = "";
-        while(data.isEmpty()){
-            data =  scanner.nextLine();
-        }
+        String data = scanner.next();
 
         String arr[] = data.split("-");
-        dataPublicacao = LocalDate.of(Integer.parseInt(arr[2]), Integer.parseInt(arr[1]), Integer.parseInt(arr[0]));
+        LocalDate dataPublicacao = LocalDate.of(Integer.parseInt(arr[2]), Integer.parseInt(arr[1]), Integer.parseInt(arr[0]));
     
         return new Livro.Builder().withTitulo(titulo).withAutor(autor)
                     .withEditora(editora).withIsbn(isbn).withNumeroPaginas(numeroPaginas)
@@ -288,14 +273,11 @@ public class BibliotecaFacade {
     }
 
     private Cliente leDadosCliente() {
-        String nome = "", email = "";
         System.out.println("Digite o nome do cliente: ");
-        while(nome.isEmpty())
-            nome =  scanner.nextLine();
+        String nome =  scanner.nextLine();
+        
         System.out.println("Digite o email do cliente: ");
-        while(email.isEmpty())
-            email =  scanner.nextLine(); // leitura do nome e email(validar? @ e .com)
-        Cliente novoCliente = new Cliente(nome,email);
-        return novoCliente;
+        String email =  scanner.next(); // leitura do nome e email(validar? @ e .com)
+        return new Cliente(nome,email);
     }
 }
