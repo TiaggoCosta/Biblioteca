@@ -134,7 +134,7 @@ public class Biblioteca {
         int indice = 0;
 
         for(Livro livro : livros) {
-            if(isbn == livro.getIsbn())
+            if(isbn.equals(livro.getIsbn()))
                 return indice;
             indice++;
         }
