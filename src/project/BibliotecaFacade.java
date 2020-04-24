@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 import project.models.Cliente;
 import project.models.Livro;
-import project.models.MeioPublicacao;
 
 public class BibliotecaFacade {
 
@@ -253,7 +252,6 @@ public class BibliotecaFacade {
         String editora = "";
         Integer numeroPaginas = null;
         Integer isbn = null;
-        MeioPublicacao meioPublicacao;
     
         System.out.println("Digite o titulo do livro: ");
         while(titulo.isEmpty())
