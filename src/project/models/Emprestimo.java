@@ -15,6 +15,7 @@ public class Emprestimo {
         this.livro = livro;
         this.dataRetirada = dataRetirada;
         this.dataDevolucao = dataRetirada.plusMonths(1);
+        this.valorMulta = 0.0;
     }
 
     public Cliente getCliente() {
@@ -54,10 +55,8 @@ public class Emprestimo {
 
         if (diasAtrasados > 0) {
             this.valorMulta = diasAtrasados * 0.50;
-        } else {
-            this.valorMulta = 0.0;
         }
-
+        
         return this.valorMulta;
     }
 
