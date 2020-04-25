@@ -35,6 +35,20 @@ public class BibliotecaFacade {
         }
     }
 
+    private Cliente leDadosCliente() {
+        String nome = "";
+        System.out.println("Digite o nome do cliente: ");
+        while (nome.isEmpty())
+            nome = scanner.nextLine();
+
+        String email = "";
+        System.out.println("Digite o email do cliente: ");
+        while (email.isEmpty())
+            email = scanner.next();
+
+        return new Cliente(nome, email);
+    }
+
     public void buscaCliente() {
         Cliente cliente = null;
         boolean pesquisado = false;
@@ -348,20 +362,5 @@ public class BibliotecaFacade {
 
         return new Livro.Builder().withTitulo(titulo).withAutor(autor).withEditora(editora).withIsbn(isbn)
                 .withNumeroPaginas(numeroPaginas).withDataPublicacao(dataPublicacao).build();
-    }
-
-    private Cliente leDadosCliente() {
-        String nome = "";
-        String email = "";
-
-        System.out.println("Digite o nome do cliente: ");
-        while (nome.isEmpty())
-            nome = scanner.nextLine();
-
-        System.out.println("Digite o email do cliente: ");
-        while (email.isEmpty())
-            email = scanner.next(); // leitura do nome e email(validar? @ e .com)
-
-        return new Cliente(nome, email);
     }
 }
