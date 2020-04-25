@@ -135,7 +135,7 @@ public class BibliotecaFacade {
     public void adicionaNovoLivro() {
         System.out.println("Entre com os dados do novo livro: ");
         Livro novoLivro = lerDadosLivro();
-        System.out.println("Autenticando novo cliente...");
+        System.out.println("Autenticando novo livro...");
         int indiceLivro = biblioteca.buscaIndiceLivro(novoLivro.getIsbn());
 
         if (indiceLivro == -1) {
@@ -218,6 +218,7 @@ public class BibliotecaFacade {
                         break;
                 }
             } else {
+                System.out.print("Deseja buscar livro para excluir?");
                 System.out.println("1) Sim \n2) Não ");
                 System.out.print("Seleção: ");
                 int opt = scanner.nextInt();
