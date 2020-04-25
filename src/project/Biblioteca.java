@@ -81,12 +81,14 @@ public class Biblioteca {
 
     public void removeClientePorEmail(String emailCliente) {
         Cliente cliente = buscaPorEmail(emailCliente);
-        removeCliente(cliente);
+        if(cliente != null)
+            removeCliente(cliente);
     }
 
     public void removeClientePorId(UUID idCliente) {
         Cliente cliente = buscaPorId(idCliente);
-        removeCliente(cliente);
+        if(cliente != null)
+            removeCliente(cliente);
     }
 
     public Cliente buscaPorEmail(String emailCliente) {
