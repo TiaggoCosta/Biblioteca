@@ -33,7 +33,7 @@ public class BibliotecaFacade {
 
     public void buscaCliente() {
         Cliente cliente = null;
-        String emailCliente = null;
+        String emailCliente = "";
         Integer idCliente = null;
         System.out.println("Selecione o campo de pesquisa: ");
         System.out.println("0) Sair \n1) ID \n2) Email ");
@@ -48,8 +48,8 @@ public class BibliotecaFacade {
                 break;
             case 2:
                 System.out.println("Digite o email do cliente: ");
-                // while(emailCliente == null)
-                emailCliente = scanner.next();
+                while(emailCliente.isEmpty())
+                    emailCliente = scanner.next();
                 cliente = biblioteca.buscaPorEmail(emailCliente);
                 break;
             default:
@@ -272,11 +272,17 @@ public class BibliotecaFacade {
     }
 
     private Cliente leDadosCliente() {
+        String nome = "";
+        String email = "";
+
         System.out.println("Digite o nome do cliente: ");
-        String nome = scanner.nextLine();
+        while (nome.isEmpty())
+            nome = scanner.nextLine();
 
         System.out.println("Digite o email do cliente: ");
-        String email = scanner.next(); // leitura do nome e email(validar? @ e .com)
+        while (email.isEmpty())
+            email = scanner.next(); // leitura do nome e email(validar? @ e .com)
+
         return new Cliente(nome, email);
     }
 }
