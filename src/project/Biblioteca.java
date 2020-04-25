@@ -79,12 +79,20 @@ public class Biblioteca {
 
     public Cliente buscaPorEmail(String emailCliente) {
         int indice = buscaIndiceCliente(emailCliente);
-        return clientes.get(indice);
+        if(indice != -1) {
+            return clientes.get(indice);
+        } else {
+            return null;
+        }
     }
 
     public Cliente buscaPorId(UUID idCliente) {
         int indice = buscaIndiceCliente(idCliente);
-        return clientes.get(indice);
+        if(indice != -1) {
+            return clientes.get(indice);
+        } else {
+            return null;
+        }
     }
 
     // Emprestimos
