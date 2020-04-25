@@ -135,7 +135,7 @@ public class BibliotecaFacade {
     public void adicionaNovoLivro() {
         System.out.println("Entre com os dados do novo livro: ");
         Livro novoLivro = lerDadosLivro();
-        System.out.println("Autenticando novo cliente...");
+        System.out.println("Autenticando novo livro...");
         int indiceLivro = biblioteca.buscaIndiceLivro(novoLivro.getIsbn());
 
         if (indiceLivro == -1) {
