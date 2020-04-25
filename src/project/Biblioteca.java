@@ -80,31 +80,21 @@ public class Biblioteca {
     }
 
     public void removeClientePorEmail(String emailCliente) {
-        int indice = buscaIndiceCliente(emailCliente);
-        clientes.remove(indice);
+        Cliente cliente = buscaPorEmail(emailCliente);
+        removeCliente(cliente);
     }
 
     public void removeClientePorId(UUID idCliente) {
-        int indice = buscaIndiceCliente(idCliente);
-        clientes.remove(indice);
+        Cliente cliente = buscaPorId(idCliente);
+        removeCliente(cliente);
     }
 
     public Cliente buscaPorEmail(String emailCliente) {
-        int indice = buscaIndiceCliente(emailCliente);
-        if (indice != -1) {
-            return clientes.get(indice);
-        } else {
-            return null;
-        }
+        return clientes.stream().filter(cliente -> cliente.getEmail().equals(emailCliente)).findAny().orElse(null);
     }
 
     public Cliente buscaPorId(UUID idCliente) {
-        int indice = buscaIndiceCliente(idCliente);
-        if (indice != -1) {
-            return clientes.get(indice);
-        } else {
-            return null;
-        }
+        return clientes.stream().filter(cliente -> cliente.getId().equals(idCliente)).findAny().orElse(null);
     }
 
     // Emprestimos
@@ -156,28 +146,6 @@ public class Biblioteca {
 
         for (Livro livro : livros) {
             if (isbn.equals(livro.getIsbn()))
-                return indice;
-            indice++;
-        }
-        return -1;
-    }
-
-    public int buscaIndiceCliente(String emailCliente) {
-        int indice = 0;
-
-        for (Cliente cliente : clientes) {
-            if (emailCliente.equalsIgnoreCase(cliente.getEmail()))
-                return indice;
-            indice++;
-        }
-        return -1;
-    }
-
-    public int buscaIndiceCliente(UUID idCliente) {
-        int indice = 0;
-
-        for (Cliente cliente : clientes) {
-            if (idCliente == cliente.getId())
                 return indice;
             indice++;
         }
