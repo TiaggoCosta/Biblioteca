@@ -49,12 +49,20 @@ public class Biblioteca {
 
     public Livro buscaPorTitulo(String tituloLivro) {
         int indice = buscaIndiceLivro(tituloLivro);
-        return livros.get(indice);
+        if (indice != -1) {
+            return livros.get(indice);
+        } else {
+            return null;
+        }
     }
 
     public Livro buscaPorISBN(Integer isbnLivro) {
         int indice = buscaIndiceLivro(isbnLivro);
-        return livros.get(indice);
+        if (indice != -1) {
+            return livros.get(indice);
+        } else {
+            return null;
+        }
     }
 
     // Clientes
@@ -79,7 +87,7 @@ public class Biblioteca {
 
     public Cliente buscaPorEmail(String emailCliente) {
         int indice = buscaIndiceCliente(emailCliente);
-        if(indice != -1) {
+        if (indice != -1) {
             return clientes.get(indice);
         } else {
             return null;
@@ -88,7 +96,7 @@ public class Biblioteca {
 
     public Cliente buscaPorId(UUID idCliente) {
         int indice = buscaIndiceCliente(idCliente);
-        if(indice != -1) {
+        if (indice != -1) {
             return clientes.get(indice);
         } else {
             return null;
