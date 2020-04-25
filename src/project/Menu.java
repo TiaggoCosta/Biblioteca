@@ -87,7 +87,7 @@ public class Menu {
                     facade.registraRetirada();
                     break;
                 case 2:
-                    // facade.devolveLivro();
+                    facade.registraDevolucao();
                     break;
                 case 3:
                     // facade.consultaEmprestimo;
