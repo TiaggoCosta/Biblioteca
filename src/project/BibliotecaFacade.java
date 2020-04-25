@@ -55,7 +55,7 @@ public class BibliotecaFacade {
         int opt = -1;
         while (opt != 0 && pesquisado == false) {
             System.out.println("Selecione o campo de pesquisa: ");
-            System.out.println("0) Sair \n1) ID \n2) Email ");
+            System.out.println("1) ID \n2) Email ");
             System.out.print("Seleção: ");
             opt = scanner.nextInt();
             switch (opt) {
@@ -118,7 +118,15 @@ public class BibliotecaFacade {
                         break;
                 }
             } else {
-                buscaCliente();
+                System.err.println("Deseja buscar cliente para excluir?");
+                System.out.println("1) Sim \n2) Não ");
+                System.out.print("Seleção: ");
+                int opt = scanner.nextInt();
+                if (opt == 2) {
+                    break;
+                } else {
+                    buscaCliente();
+                }
             }
         }
         System.out.println("Retornando ao menu cliente...");
@@ -145,15 +153,13 @@ public class BibliotecaFacade {
         Livro livro = null;
         boolean pesquisado = false;
         int opt = -1;
-        
-        while (opt != 0 && pesquisado == false){
+
+        while (opt != 0 && pesquisado == false) {
             System.out.println("Selecione o campo de pesquisa: ");
-            System.out.println("0) Sair \n1) ISBN \n2) Titulo ");
+            System.out.println("1) ISBN \n2) Titulo ");
             System.out.print("Seleção: ");
             opt = scanner.nextInt();
             switch (opt) {
-                case 0:
-                    break;
                 case 1:
                     System.out.println("Digite o ISBN do livro: ");
                     Integer isbn = null;
@@ -212,7 +218,14 @@ public class BibliotecaFacade {
                         break;
                 }
             } else {
-                buscaLivro();
+                System.out.println("1) Sim \n2) Não ");
+                System.out.print("Seleção: ");
+                int opt = scanner.nextInt();
+                if (opt == 2) {
+                    break;
+                } else {
+                    buscaLivro();
+                }
             }
         }
         System.out.println("Retornando ao menu livro...");
