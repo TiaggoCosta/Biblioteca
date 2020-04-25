@@ -134,7 +134,6 @@ public class BibliotecaFacade {
             System.out.println("Adicionando livro no acervo...");
             biblioteca.insereLivro(novoLivro);
             System.out.println("Livro adicionado com sucesso!");
-            System.out.println(novoLivro.toString());
         } else {
             System.out.println("Cadastro rejeitado! Livro já consta no acervo: ");
             Livro registrado = biblioteca.buscaPorISBN(novoLivro.getIsbn());
@@ -144,30 +143,38 @@ public class BibliotecaFacade {
 
     public void buscaLivro() {
         Livro livro = null;
-        String titulo = "";
-        Integer isbn = null;
-        System.out.println("Selecione o campo de pesquisa: ");
-        System.out.println("0) Sair \n1) ISBN \n2) Titulo ");
-        System.out.print("Seleção: ");
-        switch (scanner.nextInt()) {
-            case 0:
-                break;
-            case 1:
-                System.out.println("Digite o ISBN do livro: ");
-                isbn = scanner.nextInt();
-                livro = biblioteca.buscaPorISBN(isbn);
-                break;
-            case 2:
-                System.out.println("Digite o titulo do livro: ");
-                while (titulo.isEmpty())
-                    titulo = scanner.nextLine();
-                livro = biblioteca.buscaPorTitulo(titulo);
-                break;
-            default:
-                System.err.println("Opção inválida!");
-                break;
+        boolean pesquisado = false;
+        int opt = -1;
+        
+        while (opt != 0 && pesquisado == false){
+            System.out.println("Selecione o campo de pesquisa: ");
+            System.out.println("0) Sair \n1) ISBN \n2) Titulo ");
+            System.out.print("Seleção: ");
+            opt = scanner.nextInt();
+            switch (opt) {
+                case 0:
+                    break;
+                case 1:
+                    System.out.println("Digite o ISBN do livro: ");
+                    Integer isbn = null;
+                    isbn = scanner.nextInt();
+                    livro = biblioteca.buscaPorISBN(isbn);
+                    pesquisado = true;
+                    break;
+                case 2:
+                    System.out.println("Digite o titulo do livro: ");
+                    String titulo = "";
+                    while (titulo.isEmpty())
+                        titulo = scanner.nextLine();
+                    livro = biblioteca.buscaPorTitulo(titulo);
+                    pesquisado = true;
+                    break;
+                default:
+                    System.err.println("Opção inválida!");
+                    break;
+            }
         }
-        if (titulo != null || isbn != null) {
+        if (pesquisado) {
             if (livro != null) {
                 System.out.println("Livro encontrado: ");
                 System.out.println(livro.toString());
