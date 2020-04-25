@@ -51,7 +51,7 @@ public class BibliotecaFacade {
                 break;
             case 2:
                 System.out.println("Digite o email do cliente: ");
-                while(emailCliente.isEmpty())
+                while (emailCliente.isEmpty())
                     emailCliente = scanner.next();
                 cliente = biblioteca.buscaPorEmail(emailCliente);
                 break;
@@ -304,16 +304,23 @@ public class BibliotecaFacade {
         }
         System.out.print ( "Retornando..." );
     }
-    
-    private Livro lerDadosLivro() {    
+
+    private Livro lerDadosLivro() {
+
+        String titulo = "";
         System.out.println("Digite o titulo do livro: ");
-        String titulo = scanner.nextLine();
+        while (titulo.isEmpty())
+            titulo = scanner.nextLine();
 
+        String autor = "";
         System.out.println("Digite o autor do livro: ");
-        String autor = scanner.nextLine();
+        while (autor.isEmpty())
+            autor = scanner.nextLine();
 
+        String editora = "";
         System.out.println("Digite a editora do livro: ");
-        String editora = scanner.nextLine();
+        while (editora.isEmpty())
+            editora = scanner.nextLine();
 
         System.out.println("Digite o isbn do livro: ");
         Integer isbn = scanner.nextInt();
@@ -321,8 +328,10 @@ public class BibliotecaFacade {
         System.out.println("Digite a quantidade de páginas do livro: ");
         Integer numeroPaginas = scanner.nextInt();
 
+        String data = "";
         System.out.println("Digite a data de publicação do livro no formato DD-MM-AA: ");
-        String data = scanner.next();
+        while (data.isEmpty())
+            data = scanner.next();
 
         String arr[] = data.split("-");
         LocalDate dataPublicacao = LocalDate.of(Integer.parseInt(arr[2]), Integer.parseInt(arr[1]),
