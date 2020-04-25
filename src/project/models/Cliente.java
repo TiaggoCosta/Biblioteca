@@ -2,7 +2,7 @@ package project.models;
 
 public class Cliente {
 
-	private static contador = 0;
+	private static int contador = 0;
 	private String nome;
 	private String email;
 	private int id;

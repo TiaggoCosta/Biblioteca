@@ -3,7 +3,6 @@ package project;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import project.models.Cliente;
 import project.models.Emprestimo;
@@ -84,7 +83,7 @@ public class Biblioteca {
         removeCliente(cliente);
     }
 
-    public void removeClientePorId(UUID idCliente) {
+    public void removeClientePorId(int idCliente) {
         Cliente cliente = buscaPorId(idCliente);
         removeCliente(cliente);
     }
@@ -93,8 +92,8 @@ public class Biblioteca {
         return clientes.stream().filter(cliente -> cliente.getEmail().equals(emailCliente)).findAny().orElse(null);
     }
 
-    public Cliente buscaPorId(UUID idCliente) {
-        return clientes.stream().filter(cliente -> cliente.getId().equals(idCliente)).findAny().orElse(null);
+    public Cliente buscaPorId(int idCliente) {
+        return clientes.stream().filter(cliente -> cliente.getId() == idCliente).findAny().orElse(null);
     }
 
     // Emprestimos

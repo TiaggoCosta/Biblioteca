@@ -3,7 +3,6 @@ package project;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 import project.models.Cliente;
@@ -65,7 +64,7 @@ public class BibliotecaFacade {
                     Integer idCliente = null;
                     System.out.println("Digite o ID do cliente: ");
                     idCliente = scanner.nextInt();
-                    // cliente = biblioteca.buscaPorId(idCliente);
+                    cliente = biblioteca.buscaPorId(idCliente);
                     pesquisado = true;
                     break;
                 case 2:
@@ -316,9 +315,9 @@ public class BibliotecaFacade {
             }
         }
         System.out.println("Buscando empréstimos do cliente...");
-        UUID id = clienteDevolvendo.getId();
+        int id = clienteDevolvendo.getId();
         List<Emprestimo> emprestimosPendentes = biblioteca.getEmprestimos().stream()
-                .filter(emprestimo -> emprestimo.getCliente().getId().equals(id)).collect(Collectors.toList());
+                .filter(emprestimo -> emprestimo.getCliente().getId() == id).collect(Collectors.toList());
         boolean adicionandoLivros = true;
         while (adicionandoLivros) {
             for (Emprestimo emprestimo : emprestimosPendentes) {
