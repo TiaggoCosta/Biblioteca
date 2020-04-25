@@ -9,6 +9,8 @@ public class ReportFactory {
 			strategy = new AcervoLivrosRelatorio();
 		} else if (idRelatorio.equals(Integer.valueOf(2))) {
 			strategy = new LivrosEntregaAtrasadaRelatorio();
+		} else if (idRelatorio.equals(Integer.valueOf(3))) {
+			strategy = new ClientesCadastradosRelatorio();
 		}
 
 		return strategy;

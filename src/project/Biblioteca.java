@@ -66,6 +66,10 @@ public class Biblioteca {
     }
 
     // Clientes
+    public List<Cliente> getClientes() {
+        return clientes;
+    }
+
     public void insereCliente(Cliente cliente) {
         clientes.add(cliente);
     }
