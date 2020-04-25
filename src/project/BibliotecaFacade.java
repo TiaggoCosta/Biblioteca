@@ -37,30 +37,36 @@ public class BibliotecaFacade {
 
     public void buscaCliente() {
         Cliente cliente = null;
-        String emailCliente = "";
-        Integer idCliente = null;
-        System.out.println("Selecione o campo de pesquisa: ");
-        System.out.println("0) Sair \n1) ID \n2) Email ");
-        System.out.print("Seleção: ");
-        switch (scanner.nextInt()) {
-            case 0:
-                break;
-            case 1:
-                System.out.println("Digite o ID do cliente: ");
-                idCliente = scanner.nextInt();
-                // cliente = biblioteca.buscaPorId(idCliente);
-                break;
-            case 2:
-                System.out.println("Digite o email do cliente: ");
-                while (emailCliente.isEmpty())
-                    emailCliente = scanner.next();
-                cliente = biblioteca.buscaPorEmail(emailCliente);
-                break;
-            default:
-                System.err.println("Opção inválida!");
-                break;
+        boolean pesquisado = false;
+        int opt = -1;
+        while (opt != 0 && pesquisado == false) {
+            System.out.println("Selecione o campo de pesquisa: ");
+            System.out.println("0) Sair \n1) ID \n2) Email ");
+            System.out.print("Seleção: ");
+            opt = scanner.nextInt();
+            switch (opt) {
+                case 0:
+                    break;
+                case 1:
+                    Integer idCliente = null;
+                    System.out.println("Digite o ID do cliente: ");
+                    idCliente = scanner.nextInt();
+                    // cliente = biblioteca.buscaPorId(idCliente);
+                    pesquisado = true;
+                    break;
+                case 2:
+                    String emailCliente = "";
+                    System.out.println("Digite o email do cliente: ");
+                    while (emailCliente.isEmpty())
+                        emailCliente = scanner.next();
+                    cliente = biblioteca.buscaPorEmail(emailCliente);
+                    pesquisado = true;
+                    break;
+                default:
+                    System.err.println("Opção inválida!");
+            }
         }
-        if (emailCliente != null || idCliente != null) {
+        if (pesquisado) {
             if (cliente != null) {
                 System.out.println("Cliente encontrado: ");
                 System.out.println(cliente.toString());
