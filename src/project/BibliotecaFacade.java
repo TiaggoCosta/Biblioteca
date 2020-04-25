@@ -1,8 +1,11 @@
 package project;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
+import project.models.Emprestimo;
 import project.models.Cliente;
 import project.models.Livro;
 
@@ -242,6 +245,64 @@ public class BibliotecaFacade {
         System.out.println(clienteRetirando.toString());
         System.out.println(livrosRetirados);
         System.out.println("Data de devolução: " + LocalDate.now().plusMonths(1));
+    }
+    
+    public void registraDevolucao () {
+        Cliente clienteDevolvendo = null;
+        while(clienteDevolvendo == null){
+            if(ultimoCliente != null) {
+                System.out.println("Este cliente está requisitando a devolução?");
+                    System.out.println(ultimoCliente.toString());
+                    System.out.println ( "1) Sim \n2) Não " );
+                    System.out.print ( "Seleção: " );
+                    int selecao = 0;
+                    selecao = scanner.nextInt();
+                    switch (selecao) {
+                        case 1:
+                            clienteDevolvendo = ultimoCliente;
+                            break;
+                        case 2:
+                            System.out.println("Encaminhando para busca do cliente...");
+                            ultimoCliente = null;
+                            break;
+                        default:
+                            System.err.println ( "Opção inválida!" );
+                            break;
+                    }
+            } else {
+                buscaCliente();
+            }
+        }
+        System.out.println("Buscando empréstimos do cliente...");
+        List<Emprestimo> emprestimosPendentes = biblioteca.getEmprestimos().stream().filter(emprestimo -> emprestimo.getCliente().getId().equals(clienteDevolvendo.getId())).collect(Collectors.toList());
+        boolean adicionandoLivros = true;
+        while (adicionandoLivros) {
+            for (Emprestimo emprestimo : emprestimosPendentes) {
+                System.err.println ( "Deseja devolver este livro?" );
+                System.out.print (emprestimo.getLivro().toString());
+                System.out.println ( "1) Sim \n2) Não " );
+                System.out.print ( "Seleção: " );
+                int escolha = 0;
+                while (escolha != 1 || escolha != 2) {
+                    escolha = scanner.nextInt();
+                }
+                if(escolha == 1){
+                    System.out.print ("Calculando multa... ");
+                    Double multa = emprestimo.getValorMulta();
+                    if(multa > 0){
+                        System.out.print ("Multa de R$ " + multa + " pelo atraso!");
+                    } else {
+                        System.out.print ("Entrega no prazo. Sem multa por este empréstimo!");
+                    }
+                    biblioteca.registraDevolucao(emprestimo.getCliente(), emprestimo.getLivro());
+                } else {
+                    System.out.print ("Buscando outro empréstimo...");
+                }
+            }
+            System.out.print ("Sem mais empréstimos para este cliente!");
+            adicionandoLivros = false;
+        }
+        System.out.print ( "Retornando..." );
     }
     
     private Livro lerDadosLivro() {    
