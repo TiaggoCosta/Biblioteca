@@ -17,7 +17,7 @@ public class BibliotecaFacade {
         System.out.println("Entre com os dados do novo cliente: ");
         Cliente novoCliente = leDadosCliente();
         System.out.println("Autenticando novo cliente...");
-        int indiceCliente = Biblioteca.buscaIndiceCliente(novoCliente.getEmail());
+        int indiceCliente = biblioteca.buscaIndiceCliente(novoCliente.getEmail());
         if(indiceCliente == -1) {
             System.out.println("Inserindo cliente aos registros...");
             biblioteca.insereCliente(novoCliente);

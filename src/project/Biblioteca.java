@@ -20,7 +20,7 @@ public class Biblioteca {
     }
     
     private List<Livro> livros = new ArrayList<>();
-    private static List<Cliente> clientes = new ArrayList<>();
+    private List<Cliente> clientes = new ArrayList<>();
     private List<Emprestimo> emprestimos = new ArrayList<>();
 
 	// Livros
@@ -141,7 +141,7 @@ public class Biblioteca {
         return -1;
     }
     
-    public static int buscaIndiceCliente(String emailCliente) {
+    public int buscaIndiceCliente(String emailCliente) {
         int indice = 0;
 
         for(Cliente cliente : clientes) {
@@ -152,7 +152,7 @@ public class Biblioteca {
         return -1;
     }
     
-    public static int buscaIndiceCliente(UUID idCliente) {
+    public int buscaIndiceCliente(UUID idCliente) {
         int indice = 0;
 
         for(Cliente cliente : clientes) {
