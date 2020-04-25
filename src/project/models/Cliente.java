@@ -3,11 +3,11 @@ package project.models;
 import java.util.UUID;
 
 public class Cliente {
-	
+
 	private String nome;
 	private String email;
 	private UUID id;
-	
+
 	public Cliente(String nome, String email) {
 		this.nome = nome;
 		this.email = email;

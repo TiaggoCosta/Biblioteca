@@ -12,11 +12,11 @@ public class Main {
 
         boolean ligado = true;
 
-        while(ligado) {
+        while (ligado) {
             display_menu();
             switch (scanner.nextInt()) {
                 case 0:
-                    System.out.println ( "Desligando o sistema..." );
+                    System.out.println("Desligando o sistema...");
                     ligado = false;
                     scanner.close();
                     break;
@@ -33,7 +33,7 @@ public class Main {
                     menu.operacoesEmprestimos(facade);
                     break;
                 default:
-                    System.err.println ( "Opção inválida!" );
+                    System.err.println("Opção inválida!");
             }
         }
         scanner.close();
@@ -41,7 +41,7 @@ public class Main {
 
     public static void display_menu() {
         System.out.println("--------------------------- Menu Principal ---------------------------");
-        System.out.println ( "0) Desligar sistema \n1) Relatórios \n2) Clientes \n3) Livros \n4) Empréstimos" );
-        System.out.print ( "Seleção: " );
+        System.out.println("0) Desligar sistema \n1) Relatórios \n2) Clientes \n3) Livros \n4) Empréstimos");
+        System.out.print("Seleção: ");
     }
 }
