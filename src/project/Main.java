@@ -20,7 +20,7 @@ public class Main {
         adicionaLivrosIniciais();
 
         while (opt != 0) {
-            display_menu();
+            menu.displayMenuPrincipal();
             opt = scanner.nextInt();
             switch (opt) {
                 case 0:
@@ -28,7 +28,7 @@ public class Main {
                     scanner.close();
                     break;
                 case 1:
-                    menu.selecionaRelatorio();
+                    menu.selecionaRelatorio(facade);
                     break;
                 case 2:
                     menu.operacoesCliente(facade);
@@ -43,13 +43,6 @@ public class Main {
                     System.err.println("Opção inválida!");
             }
         }
-        scanner.close();
-    }
-
-    public static void display_menu() {
-        System.out.println("--------------------------- Menu Principal ---------------------------");
-        System.out.println("0) Desligar sistema \n1) Relatórios \n2) Clientes \n3) Livros \n4) Empréstimos");
-        System.out.print("Seleção: ");
     }
 
     private static void adicionaLivrosIniciais() {

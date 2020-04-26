@@ -8,17 +8,20 @@ import java.util.stream.Collectors;
 import project.models.Cliente;
 import project.models.Emprestimo;
 import project.models.Livro;
+import project.report.IReportStrategy;
+import project.report.ReportFactory;
 
 public class BibliotecaFacade {
 
-    Biblioteca biblioteca = Biblioteca.getInstance();
-    Scanner scanner = new Scanner(System.in);
-    Cliente ultimoCliente = null;
-    Livro ultimoLivro = null;
+    private Biblioteca biblioteca = Biblioteca.getInstance();
+    private Scanner scanner = new Scanner(System.in);
+    private Cliente ultimoCliente = null;
+    private Livro ultimoLivro = null;
 
-    public void novoCliente() {
+    //operacoes clientes
+    public void adicionaCliente() {
         System.out.println("Entre com os dados do novo cliente: ");
-        Cliente novoCliente = leDadosCliente();
+        Cliente novoCliente = lerDadosCliente();
         System.out.println("Autenticando novo cliente...");
         Cliente cliente = biblioteca.buscaPorEmail(novoCliente.getEmail());
         if (cliente == null) {
@@ -32,6 +35,20 @@ public class BibliotecaFacade {
             ultimoCliente = registrado;
             System.out.println(registrado.toString());
         }
+    }
+
+    private Cliente lerDadosCliente() {
+        String nome = "";
+        System.out.println("Digite o nome do cliente: ");
+        while (nome.isEmpty())
+            nome = scanner.nextLine();
+
+        String email = "";
+        System.out.println("Digite o email do cliente: ");
+        while (email.isEmpty())
+            email = scanner.next();
+
+        return new Cliente(nome, email);
     }
 
     public void buscaCliente() {
@@ -118,7 +135,8 @@ public class BibliotecaFacade {
         System.out.println("Retornando ao menu cliente...");
     }
 
-    public void adicionaNovoLivro() {
+    //operacoes livros
+    public void adicionaLivro() {
         System.out.println("Entre com os dados do novo livro: ");
         Livro novoLivro = lerDadosLivro();
         System.out.println("Autenticando novo livro...");
@@ -135,6 +153,44 @@ public class BibliotecaFacade {
             ultimoLivro = registrado;
             System.out.println(registrado.toString());
         }
+    }
+
+    private Livro lerDadosLivro() {
+
+        String titulo = "";
+        System.out.println("Digite o titulo do livro: ");
+        while (titulo.isEmpty())
+            titulo = scanner.nextLine();
+
+        String autor = "";
+        System.out.println("Digite o autor do livro: ");
+        while (autor.isEmpty())
+            autor = scanner.nextLine();
+
+        String editora = "";
+        System.out.println("Digite a editora do livro: ");
+        while (editora.isEmpty())
+            editora = scanner.nextLine();
+
+        String isbn = "";
+        System.out.println("Digite o isbn do livro: ");
+        while (isbn.isEmpty())
+            isbn = scanner.nextLine();
+
+        System.out.println("Digite a quantidade de páginas do livro: ");
+        Integer numeroPaginas = scanner.nextInt();
+
+        String data = "";
+        System.out.println("Digite a data de publicação do livro no formato DD-MM-AA: ");
+        while (data.isEmpty())
+            data = scanner.next();
+
+        String arr[] = data.split("-");
+        LocalDate dataPublicacao = LocalDate.of(Integer.parseInt(arr[2]), Integer.parseInt(arr[1]),
+                Integer.parseInt(arr[0]));
+
+        return new Livro.Builder().withTitulo(titulo).withAutor(autor).withEditora(editora).withIsbn(isbn)
+                .withNumeroPaginas(numeroPaginas).withDataPublicacao(dataPublicacao).build();
     }
 
     public void buscaLivro() {
@@ -222,6 +278,7 @@ public class BibliotecaFacade {
         System.out.println("Retornando ao menu livro...");
     }
 
+    //operacoes emprestimos
     public void registraRetirada() {
         Cliente clienteRetirando = null;
         boolean buscouCliente = true;
@@ -363,55 +420,9 @@ public class BibliotecaFacade {
         System.out.println("Retornando...");
     }
 
-    private Cliente leDadosCliente() {
-        String nome = "";
-        System.out.println("Digite o nome do cliente: ");
-        while (nome.isEmpty())
-            nome = scanner.nextLine();
-
-        String email = "";
-        System.out.println("Digite o email do cliente: ");
-        while (email.isEmpty())
-            email = scanner.next();
-
-        return new Cliente(nome, email);
-    }
-
-    private Livro lerDadosLivro() {
-
-        String titulo = "";
-        System.out.println("Digite o titulo do livro: ");
-        while (titulo.isEmpty())
-            titulo = scanner.nextLine();
-
-        String autor = "";
-        System.out.println("Digite o autor do livro: ");
-        while (autor.isEmpty())
-            autor = scanner.nextLine();
-
-        String editora = "";
-        System.out.println("Digite a editora do livro: ");
-        while (editora.isEmpty())
-            editora = scanner.nextLine();
-
-        String isbn = "";
-        System.out.println("Digite o isbn do livro: ");
-        while (isbn.isEmpty())
-            isbn = scanner.nextLine();
-
-        System.out.println("Digite a quantidade de páginas do livro: ");
-        Integer numeroPaginas = scanner.nextInt();
-
-        String data = "";
-        System.out.println("Digite a data de publicação do livro no formato DD-MM-AA: ");
-        while (data.isEmpty())
-            data = scanner.next();
-
-        String arr[] = data.split("-");
-        LocalDate dataPublicacao = LocalDate.of(Integer.parseInt(arr[2]), Integer.parseInt(arr[1]),
-                Integer.parseInt(arr[0]));
-
-        return new Livro.Builder().withTitulo(titulo).withAutor(autor).withEditora(editora).withIsbn(isbn)
-                .withNumeroPaginas(numeroPaginas).withDataPublicacao(dataPublicacao).build();
+    //operacoes relatorios
+    public void showRelatorio(Integer opcao) {
+        IReportStrategy reportStrategy = ReportFactory.getRelatorio(opcao);
+        reportStrategy.showData();
     }
 }

@@ -32,7 +32,7 @@ public class LivrosEmprestadosRelatorio implements IReportStrategy {
         }
 
         if (!livrosEmprestados) {
-            System.out.printf("%60s", "Não há Livros Emprestados");
+            System.out.printf("%70s", "Não há Livros Emprestados");
             System.out.println();
         }
 

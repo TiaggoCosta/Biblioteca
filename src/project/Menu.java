@@ -1,12 +1,15 @@
 package project;
 
-import project.report.IReportStrategy;
-import project.report.ReportFactory;
-
 import java.util.Scanner;
 
 public class Menu {
     Scanner scanner = new Scanner(System.in);
+
+    public void displayMenuPrincipal() {
+        System.out.println("--------------------------- Menu Principal ---------------------------");
+        System.out.println("0) Desligar sistema \n1) Relatórios \n2) Clientes \n3) Livros \n4) Empréstimos");
+        System.out.print("Seleção: ");
+    }
 
     public void operacoesCliente(BibliotecaFacade facade) {
         int opt = -1;
@@ -22,7 +25,7 @@ public class Menu {
                 case 0:
                     break;
                 case 1:
-                    facade.novoCliente();
+                    facade.adicionaCliente();
                     break;
                 case 2:
                     facade.buscaCliente();
@@ -50,7 +53,7 @@ public class Menu {
                 case 0:
                     break;
                 case 1:
-                    facade.adicionaNovoLivro();
+                    facade.adicionaLivro();
                     break;
                 case 2:
                     facade.buscaLivro();
@@ -89,10 +92,8 @@ public class Menu {
         }
     }
 
-    public void selecionaRelatorio() {
+    public void selecionaRelatorio(BibliotecaFacade facade) {
         int opt = -1;
-        IReportStrategy reportStrategy = null;
-
         while (opt != 0) {
             System.out.println("--------------------------- Menu Relatórios ---------------------------");
             System.out.println(
@@ -106,7 +107,7 @@ public class Menu {
                 case 2:
                 case 3:
                 case 4:
-                    showRelatorio(opt, reportStrategy);
+                    facade.showRelatorio(opt);
                     break;
                 case 0:
                     break;
@@ -114,10 +115,5 @@ public class Menu {
                     System.err.println("Opção inválida!");
             }
         }
-    }
-
-    private void showRelatorio(Integer opcao, IReportStrategy reportStrategy) {
-        reportStrategy = ReportFactory.getRelatorio(opcao);
-        reportStrategy.showData();
     }
 }
