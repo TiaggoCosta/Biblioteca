@@ -91,6 +91,7 @@ public class BibliotecaFacade {
                     case 1:
                         System.out.println("Excluindo...");
                         biblioteca.removeCliente(ultimoCliente);
+                        ultimoCliente = null;
                         System.out.println("Cliente removido com sucesso!");
                         excluindo = false;
                         break;
@@ -126,10 +127,12 @@ public class BibliotecaFacade {
         if (livro == null) {
             System.out.println("Adicionando livro no acervo...");
             biblioteca.insereLivro(novoLivro);
+            ultimoLivro = novoLivro;
             System.out.println("Livro adicionado com sucesso!");
         } else {
             System.out.println("Cadastro rejeitado! Livro já consta no acervo: ");
             Livro registrado = biblioteca.buscaPorISBN(novoLivro.getIsbn());
+            ultimoLivro = registrado;
             System.out.println(registrado.toString());
         }
     }
@@ -192,6 +195,7 @@ public class BibliotecaFacade {
                     case 1:
                         System.out.println("Excluindo...");
                         biblioteca.removeLivro(ultimoLivro);
+                        ultimoLivro = null;
                         System.out.println("Livro removido com sucesso!");
                         excluindo = false;
                         break;
