@@ -6,6 +6,8 @@ Projeto para a aplicação de padrões de código da disciplina de Desenvolvimen
 
 Apenas rode a classe Main e vá selecionando as opções pelo menu que aparecerá no console!
 
+Na inicialização, alguns livros, clientes e empréstimos são adicionados. Para vê-los, você pode verificar os relatórios.
+
 ## Padrões Aplicados
 
 * Singleton
