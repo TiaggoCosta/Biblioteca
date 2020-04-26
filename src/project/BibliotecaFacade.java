@@ -147,8 +147,9 @@ public class BibliotecaFacade {
             switch (opt) {
                 case 1:
                     System.out.println("Digite o ISBN do livro: ");
-                    Integer isbn = null;
-                    isbn = scanner.nextInt();
+                    String isbn = "";
+                    while (isbn.isEmpty())
+                        isbn = scanner.nextLine();
                     livro = biblioteca.buscaPorISBN(isbn);
                     pesquisado = true;
                     break;
@@ -389,8 +390,10 @@ public class BibliotecaFacade {
         while (editora.isEmpty())
             editora = scanner.nextLine();
 
+        String isbn = "";
         System.out.println("Digite o isbn do livro: ");
-        Integer isbn = scanner.nextInt();
+        while (isbn.isEmpty())
+            isbn = scanner.nextLine();
 
         System.out.println("Digite a quantidade de páginas do livro: ");
         Integer numeroPaginas = scanner.nextInt();

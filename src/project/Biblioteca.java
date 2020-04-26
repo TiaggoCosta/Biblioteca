@@ -40,7 +40,7 @@ public class Biblioteca {
         return livros.stream().filter(livro -> livro.getTitulo().equals(tituloLivro)).findAny().orElse(null);
     }
 
-    public Livro buscaPorISBN(Integer isbn) {
+    public Livro buscaPorISBN(String isbn) {
         return livros.stream().filter(livro -> livro.getIsbn().equals(isbn)).findAny().orElse(null);
     }
 

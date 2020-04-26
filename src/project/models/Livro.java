@@ -9,7 +9,7 @@ public class Livro {
     private String autor;
     private String editora;
     private Integer numeroPaginas;
-    private Integer isbn;
+    private String isbn;
 
     private Livro(Builder builder) {
         this.titulo = builder.titulo;
@@ -26,7 +26,7 @@ public class Livro {
         private String autor;
         private String editora;
         private Integer numeroPaginas;
-        private Integer isbn;
+        private String isbn;
 
         public Builder() {
 
@@ -57,7 +57,7 @@ public class Livro {
             return this;
         }
 
-        public Builder withIsbn(Integer isbn) {
+        public Builder withIsbn(String isbn) {
             this.isbn = isbn;
             return this;
         }
@@ -87,7 +87,7 @@ public class Livro {
         return numeroPaginas;
     }
 
-    public Integer getIsbn() {
+    public String getIsbn() {
         return isbn;
     }
 
