@@ -219,6 +219,7 @@ public class BibliotecaFacade {
 
     public void registraRetirada() {
         Cliente clienteRetirando = null;
+        boolean buscouCliente = true;
         while (clienteRetirando == null) {
             if (ultimoCliente != null) {
                 System.out.println("Este cliente está requisitando a retirada?");
@@ -240,41 +241,55 @@ public class BibliotecaFacade {
                         break;
                 }
             } else {
-                buscaCliente();
+                System.err.println("Deseja buscar cliente para retirada?");
+                System.out.println("1) Sim \n2) Não ");
+                System.out.print("Seleção: ");
+                int opt = scanner.nextInt();
+                if (opt == 2) {
+                    buscouCliente = false;
+                    break;
+                } else {
+                    System.out.println("Encaminhando para busca do cliente...");
+                    buscaCliente();
+                }
             }
         }
-        System.out.println("Checando status do cliente...");
-        // ver se tem debito pendente ou livro atrasado
-        System.out.println("Cliente regularizado");
-        System.out.println("Encaminhando para busca de livros...");
-        boolean adicionandoLivros = true;
-        Livro livroRetirado = null;
-        String livrosRetirados = "";
-        while (adicionandoLivros) {
-            buscaLivro();
-            livroRetirado = ultimoLivro;
-            biblioteca.registraRetirada(clienteRetirando, livroRetirado, LocalDate.now());
-            livrosRetirados += livroRetirado.toString() + "\n";
-            System.err.println("Deseja retirar mais livros?");
-            System.out.println("1) Sim \n2) Não ");
-            System.out.print("Seleção: ");
-            int escolha = 0;
+        if (buscouCliente) {
+            System.out.println("Checando status do cliente...");
+            // ver se tem debito pendente ou livro atrasado
+            System.out.println("Cliente regularizado");
+            System.out.println("Encaminhando para busca de livros...");
+            boolean adicionandoLivros = true;
+            Livro livroRetirado = null;
+            String livrosRetirados = "";
+            while (adicionandoLivros) {
+                buscaLivro();
+                livroRetirado = ultimoLivro;
+                biblioteca.registraRetirada(clienteRetirando, livroRetirado, LocalDate.now());
+                livrosRetirados += livroRetirado.toString() + "\n";
+                System.err.println("Deseja retirar mais livros?");
+                System.out.println("1) Sim \n2) Não ");
+                System.out.print("Seleção: ");
+                int escolha = 0;
                 escolha = scanner.nextInt();
-            if (escolha == 1) {
-                continue;
-            } else {
-                adicionandoLivros = false;
+                if (escolha == 1) {
+                    continue;
+                } else {
+                    adicionandoLivros = false;
+                }
             }
+            System.out.println("Registrando retirada...");
+            System.out.println("Dados da retirada: ");
+            System.out.println(clienteRetirando.toString());
+            System.out.println(livrosRetirados);
+            System.out.println("Data de devolução: " + LocalDate.now().plusMonths(1));
         }
-        System.out.println("Registrando retirada...");
-        System.out.println("Dados da retirada: ");
-        System.out.println(clienteRetirando.toString());
-        System.out.println(livrosRetirados);
-        System.out.println("Data de devolução: " + LocalDate.now().plusMonths(1));
+        System.out.println("Retornando...");
     }
 
     public void registraDevolucao() {
         Cliente clienteDevolvendo = null;
+        boolean buscouCliente = true;
         while (clienteDevolvendo == null) {
             if (ultimoCliente != null) {
                 System.out.println("Este cliente está requisitando a devolução?");
@@ -296,37 +311,49 @@ public class BibliotecaFacade {
                         break;
                 }
             } else {
-                buscaCliente();
-            }
-        }
-        System.out.println("Buscando empréstimos do cliente...");
-        int id = clienteDevolvendo.getId();
-        List<Emprestimo> emprestimosPendentes = biblioteca.getEmprestimos().stream()
-                .filter(emprestimo -> emprestimo.getCliente().getId() == id).collect(Collectors.toList());
-        boolean adicionandoLivros = true;
-        while (adicionandoLivros) {
-            for (Emprestimo emprestimo : emprestimosPendentes) {
-                System.err.println("Deseja devolver este livro?");
-                System.out.println(emprestimo.getLivro().toString());
+                System.err.println("Deseja buscar cliente para devolução?");
                 System.out.println("1) Sim \n2) Não ");
                 System.out.print("Seleção: ");
-                int escolha = 0;
-                    escolha = scanner.nextInt();
-                if (escolha == 1) {
-                    System.out.println("Calculando multa... ");
-                    Double multa = emprestimo.getValorMulta();
-                    if (multa > 0) {
-                        System.out.println("Multa de R$ " + multa + " pelo atraso!");
-                    } else {
-                        System.out.println("Entrega no prazo. Sem multa por este empréstimo!");
-                    }
-                    biblioteca.registraDevolucao(emprestimo.getCliente(), emprestimo.getLivro());
+                int opt = scanner.nextInt();
+                if (opt == 2) {
+                    buscouCliente = false;
+                    break;
                 } else {
-                    System.out.println("Buscando outro empréstimo...");
+                    System.out.println("Encaminhando para busca do cliente...");
+                    buscaCliente();
                 }
             }
-            System.out.println("Sem mais empréstimos para este cliente!");
-            adicionandoLivros = false;
+        }
+        if (buscouCliente) {
+            System.out.println("Buscando empréstimos do cliente...");
+            int id = clienteDevolvendo.getId();
+            List<Emprestimo> emprestimosPendentes = biblioteca.getEmprestimos().stream()
+                    .filter(emprestimo -> emprestimo.getCliente().getId() == id).collect(Collectors.toList());
+            boolean adicionandoLivros = true;
+            while (adicionandoLivros) {
+                for (Emprestimo emprestimo : emprestimosPendentes) {
+                    System.err.println("Deseja devolver este livro?");
+                    System.out.println(emprestimo.getLivro().toString());
+                    System.out.println("1) Sim \n2) Não ");
+                    System.out.print("Seleção: ");
+                    int escolha = 0;
+                    escolha = scanner.nextInt();
+                    if (escolha == 1) {
+                        System.out.println("Calculando multa... ");
+                        Double multa = emprestimo.getValorMulta();
+                        if (multa > 0) {
+                            System.out.println("Multa de R$ " + multa + " pelo atraso!");
+                        } else {
+                            System.out.println("Entrega no prazo. Sem multa por este empréstimo!");
+                        }
+                        biblioteca.registraDevolucao(emprestimo.getCliente(), emprestimo.getLivro());
+                    } else {
+                        System.out.println("Buscando outro empréstimo...");
+                    }
+                }
+                System.out.println("Sem mais empréstimos para este cliente!");
+                adicionandoLivros = false;
+            }
         }
         System.out.println("Retornando...");
     }
