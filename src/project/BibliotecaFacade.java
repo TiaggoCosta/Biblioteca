@@ -22,8 +22,10 @@ public class BibliotecaFacade {
     public void adicionaCliente() {
         System.out.println("Entre com os dados do novo cliente: ");
         Cliente novoCliente = lerDadosCliente();
+
         System.out.println("Autenticando novo cliente...");
         Cliente cliente = biblioteca.buscaPorEmail(novoCliente.getEmail());
+        
         if (cliente == null) {
             System.out.println("Inserindo cliente aos registros...");
             biblioteca.insereCliente(novoCliente);
@@ -139,6 +141,7 @@ public class BibliotecaFacade {
     public void adicionaLivro() {
         System.out.println("Entre com os dados do novo livro: ");
         Livro novoLivro = lerDadosLivro();
+
         System.out.println("Autenticando novo livro...");
         Livro livro = biblioteca.buscaPorISBN(novoLivro.getIsbn());
 
@@ -156,7 +159,6 @@ public class BibliotecaFacade {
     }
 
     private Livro lerDadosLivro() {
-
         String titulo = "";
         System.out.println("Digite o titulo do livro: ");
         while (titulo.isEmpty())
