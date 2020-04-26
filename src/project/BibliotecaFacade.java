@@ -18,7 +18,7 @@ public class BibliotecaFacade {
     private Cliente ultimoCliente = null;
     private Livro ultimoLivro = null;
 
-    //operacoes clientes
+    // operacoes clientes
     public void adicionaCliente() {
         System.out.println("Entre com os dados do novo cliente: ");
         Cliente novoCliente = lerDadosCliente();
@@ -135,7 +135,7 @@ public class BibliotecaFacade {
         System.out.println("Retornando ao menu cliente...");
     }
 
-    //operacoes livros
+    // operacoes livros
     public void adicionaLivro() {
         System.out.println("Entre com os dados do novo livro: ");
         Livro novoLivro = lerDadosLivro();
@@ -278,7 +278,7 @@ public class BibliotecaFacade {
         System.out.println("Retornando ao menu livro...");
     }
 
-    //operacoes emprestimos
+    // operacoes emprestimos
     public void registraRetirada() {
         Cliente clienteRetirando = null;
         boolean buscouCliente = true;
@@ -318,33 +318,44 @@ public class BibliotecaFacade {
         }
         if (buscouCliente) {
             System.out.println("Checando status do cliente...");
-            // ver se tem debito pendente ou livro atrasado
-            System.out.println("Cliente regularizado");
-            System.out.println("Encaminhando para busca de livros...");
-            boolean adicionandoLivros = true;
-            Livro livroRetirado = null;
-            String livrosRetirados = "";
-            while (adicionandoLivros) {
-                buscaLivro();
-                livroRetirado = ultimoLivro;
-                biblioteca.registraRetirada(clienteRetirando, livroRetirado, LocalDate.now());
-                livrosRetirados += livroRetirado.toString() + "\n";
-                System.err.println("Deseja retirar mais livros?");
-                System.out.println("1) Sim \n2) Não ");
-                System.out.print("Seleção: ");
-                int escolha = 0;
-                escolha = scanner.nextInt();
-                if (escolha == 1) {
-                    continue;
-                } else {
-                    adicionandoLivros = false;
+            List<Emprestimo> emprestimosCliente = biblioteca.getEmprestimos().stream()
+                    .filter(emprestimo -> emprestimo.getCliente().getId() == ultimoCliente.getId())
+                    .filter(emprestimo -> emprestimo.getDataDevolucao().isBefore(LocalDate.now()))
+                    .collect(Collectors.toList());
+
+            if (!emprestimosCliente.isEmpty()) {
+                System.out.println("Cliente possui livros atrasados!");
+                System.out.println("Favor realizar a regularização.");
+
+            } else {
+
+                System.out.println("Cliente regularizado");
+                System.out.println("Encaminhando para busca de livros...");
+                boolean adicionandoLivros = true;
+                Livro livroRetirado = null;
+                String livrosRetirados = "";
+                while (adicionandoLivros) {
+                    buscaLivro();
+                    livroRetirado = ultimoLivro;
+                    biblioteca.registraRetirada(clienteRetirando, livroRetirado, LocalDate.now());
+                    livrosRetirados += livroRetirado.toString() + "\n";
+                    System.err.println("Deseja retirar mais livros?");
+                    System.out.println("1) Sim \n2) Não ");
+                    System.out.print("Seleção: ");
+                    int escolha = 0;
+                    escolha = scanner.nextInt();
+                    if (escolha == 1) {
+                        continue;
+                    } else {
+                        adicionandoLivros = false;
+                    }
                 }
+                System.out.println("Registrando retirada...");
+                System.out.println("Dados da retirada: ");
+                System.out.println(clienteRetirando.toString());
+                System.out.println(livrosRetirados);
+                System.out.println("Data de devolução: " + LocalDate.now().plusMonths(1));
             }
-            System.out.println("Registrando retirada...");
-            System.out.println("Dados da retirada: ");
-            System.out.println(clienteRetirando.toString());
-            System.out.println(livrosRetirados);
-            System.out.println("Data de devolução: " + LocalDate.now().plusMonths(1));
         }
         System.out.println("Retornando...");
     }
@@ -420,7 +431,7 @@ public class BibliotecaFacade {
         System.out.println("Retornando...");
     }
 
-    //operacoes relatorios
+    // operacoes relatorios
     public void showRelatorio(Integer opcao) {
         IReportStrategy reportStrategy = ReportFactory.getRelatorio(opcao);
         reportStrategy.showData();

@@ -18,6 +18,7 @@ public class Main {
 
         adicionaClientesIniciais();
         adicionaLivrosIniciais();
+        adicionaEmprestimos();
 
         while (opt != 0) {
             menu.displayMenuPrincipal();
@@ -43,6 +44,13 @@ public class Main {
                     System.err.println("Opção inválida!");
             }
         }
+    }
+
+    private static void adicionaEmprestimos() {
+        Biblioteca biblioteca = Biblioteca.getInstance();
+        biblioteca.registraRetirada(biblioteca.getClientes().get(0), biblioteca.getLivros().get(0),
+                LocalDate.of(2020, 02, 23));
+        biblioteca.registraRetirada(biblioteca.getClientes().get(1), biblioteca.getLivros().get(0), LocalDate.now());
     }
 
     private static void adicionaLivrosIniciais() {
