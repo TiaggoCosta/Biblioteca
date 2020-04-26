@@ -335,8 +335,10 @@ public class BibliotecaFacade {
                 Livro livroRetirado = null;
                 String livrosRetirados = "";
                 while (adicionandoLivros) {
-                    buscaLivro();
-                    livroRetirado = ultimoLivro;
+                    while(livroRetirado == null){
+                        buscaLivro();
+                        livroRetirado = ultimoLivro;
+                    }
                     biblioteca.registraRetirada(clienteRetirando, livroRetirado, LocalDate.now());
                     livrosRetirados += livroRetirado.toString() + "\n";
                     System.err.println("Deseja retirar mais livros?");
