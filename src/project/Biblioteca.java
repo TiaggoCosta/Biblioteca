@@ -37,31 +37,23 @@ public class Biblioteca {
     }
 
     public void removeLivroPorISBN(Integer isbnLivro) {
-        int indice = buscaIndiceLivro(isbnLivro);
-        livros.remove(indice);
+        Livro livro = buscaPorISBN(isbnLivro);
+        if (livro != null)
+            removeLivro(livro);
     }
 
     public void removeLivroPorTitulo(String tituloLivro) {
-        int indice = buscaIndiceLivro(tituloLivro);
-        livros.remove(indice);
+        Livro livro = buscaPorTitulo(tituloLivro);
+        if (livro != null)
+            removeLivro(livro);
     }
-
+    
     public Livro buscaPorTitulo(String tituloLivro) {
-        int indice = buscaIndiceLivro(tituloLivro);
-        if (indice != -1) {
-            return livros.get(indice);
-        } else {
-            return null;
-        }
+        return livros.stream().filter(livro -> livro.getTitulo().equals(tituloLivro)).findAny().orElse(null);
     }
 
-    public Livro buscaPorISBN(Integer isbnLivro) {
-        int indice = buscaIndiceLivro(isbnLivro);
-        if (indice != -1) {
-            return livros.get(indice);
-        } else {
-            return null;
-        }
+    public Livro buscaPorISBN(Integer isbn) {
+        return livros.stream().filter(livro -> livro.getIsbn().equals(isbn)).findAny().orElse(null);
     }
 
     // Clientes
@@ -80,13 +72,13 @@ public class Biblioteca {
 
     public void removeClientePorEmail(String emailCliente) {
         Cliente cliente = buscaPorEmail(emailCliente);
-        if(cliente != null)
+        if (cliente != null)
             removeCliente(cliente);
     }
 
     public void removeClientePorId(int idCliente) {
         Cliente cliente = buscaPorId(idCliente);
-        if(cliente != null)
+        if (cliente != null)
             removeCliente(cliente);
     }
 
@@ -128,28 +120,5 @@ public class Biblioteca {
         for (Livro livro : livros) {
             registraDevolucao(cliente, livro);
         }
-    }
-
-    // busca indice
-    public int buscaIndiceLivro(String tituloLivro) {
-        int indice = 0;
-
-        for (Livro livro : livros) {
-            if (tituloLivro.equalsIgnoreCase(livro.getTitulo()))
-                return indice;
-            indice++;
-        }
-        return -1;
-    }
-
-    public int buscaIndiceLivro(Integer isbn) {
-        int indice = 0;
-
-        for (Livro livro : livros) {
-            if (isbn.equals(livro.getIsbn()))
-                return indice;
-            indice++;
-        }
-        return -1;
     }
 }
