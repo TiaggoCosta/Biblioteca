@@ -76,25 +76,12 @@ public class Biblioteca {
         emprestimos.add(emprestimo);
     }
 
-    public void registraRetirada(Cliente cliente, Livro[] livros, LocalDate dataRetirada) {
-        for (Livro livro : livros) {
-            Emprestimo emprestimo = new Emprestimo(cliente, livro, dataRetirada);
-            emprestimos.add(emprestimo);
-        }
-    }
-
     public void registraDevolucao(Cliente cliente, Livro livro) {
         for (Emprestimo emprestimo : emprestimos) {
             if (emprestimo.getCliente().equals(cliente) && emprestimo.getLivro().equals(livro)) {
                 emprestimos.remove(emprestimo);
                 break;
             }
-        }
-    }
-
-    public void registraDevolucao(Cliente cliente, Livro[] livros) {
-        for (Livro livro : livros) {
-            registraDevolucao(cliente, livro);
         }
     }
 }
