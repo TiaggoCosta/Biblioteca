@@ -35,18 +35,6 @@ public class Biblioteca {
         int indice = livros.indexOf(livro);
         livros.remove(indice);
     }
-
-    public void removeLivroPorISBN(Integer isbnLivro) {
-        Livro livro = buscaPorISBN(isbnLivro);
-        if (livro != null)
-            removeLivro(livro);
-    }
-
-    public void removeLivroPorTitulo(String tituloLivro) {
-        Livro livro = buscaPorTitulo(tituloLivro);
-        if (livro != null)
-            removeLivro(livro);
-    }
     
     public Livro buscaPorTitulo(String tituloLivro) {
         return livros.stream().filter(livro -> livro.getTitulo().equals(tituloLivro)).findAny().orElse(null);
@@ -68,18 +56,6 @@ public class Biblioteca {
     public void removeCliente(Cliente cliente) {
         int indice = clientes.indexOf(cliente);
         clientes.remove(indice);
-    }
-
-    public void removeClientePorEmail(String emailCliente) {
-        Cliente cliente = buscaPorEmail(emailCliente);
-        if (cliente != null)
-            removeCliente(cliente);
-    }
-
-    public void removeClientePorId(int idCliente) {
-        Cliente cliente = buscaPorId(idCliente);
-        if (cliente != null)
-            removeCliente(cliente);
     }
 
     public Cliente buscaPorEmail(String emailCliente) {
