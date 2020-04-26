@@ -50,6 +50,8 @@ public class Main {
         Biblioteca biblioteca = Biblioteca.getInstance();
         biblioteca.registraRetirada(biblioteca.getClientes().get(0), biblioteca.getLivros().get(0),
                 LocalDate.of(2020, 02, 23));
+        biblioteca.registraRetirada(biblioteca.getClientes().get(0), biblioteca.getLivros().get(1),
+                LocalDate.of(2020, 02, 23));
         biblioteca.registraRetirada(biblioteca.getClientes().get(1), biblioteca.getLivros().get(0), LocalDate.now());
     }
 

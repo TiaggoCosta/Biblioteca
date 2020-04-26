@@ -324,11 +324,11 @@ public class BibliotecaFacade {
                     .collect(Collectors.toList());
 
             if (!emprestimosCliente.isEmpty()) {
-                System.out.println("Cliente possui livros atrasados!");
-                System.out.println("Favor realizar a regularização.");
+                System.out.println("Cliente possui os seguintes livros atrasados:");
+                emprestimosCliente.stream().forEach(e -> System.out.println(e.getLivro().toString()));
+                System.out.println("Por favor realize a regularização antes de efetuar nova retirada!");
 
             } else {
-
                 System.out.println("Cliente regularizado");
                 System.out.println("Encaminhando para busca de livros...");
                 boolean adicionandoLivros = true;

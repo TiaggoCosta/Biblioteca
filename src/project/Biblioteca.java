@@ -35,13 +35,13 @@ public class Biblioteca {
         int indice = livros.indexOf(livro);
         livros.remove(indice);
     }
-    
+
     public Livro buscaPorTitulo(String tituloLivro) {
-        return livros.stream().filter(livro -> livro.getTitulo().equals(tituloLivro)).findAny().orElse(null);
+        return livros.stream().filter(livro -> livro.getTitulo().equalsIgnoreCase(tituloLivro)).findAny().orElse(null);
     }
 
     public Livro buscaPorISBN(String isbn) {
-        return livros.stream().filter(livro -> livro.getIsbn().equals(isbn)).findAny().orElse(null);
+        return livros.stream().filter(livro -> livro.getIsbn().equalsIgnoreCase(isbn)).findAny().orElse(null);
     }
 
     // Clientes
@@ -59,7 +59,7 @@ public class Biblioteca {
     }
 
     public Cliente buscaPorEmail(String emailCliente) {
-        return clientes.stream().filter(cliente -> cliente.getEmail().equals(emailCliente)).findAny().orElse(null);
+        return clientes.stream().filter(cliente -> cliente.getEmail().equalsIgnoreCase(emailCliente)).findAny().orElse(null);
     }
 
     public Cliente buscaPorId(int idCliente) {
