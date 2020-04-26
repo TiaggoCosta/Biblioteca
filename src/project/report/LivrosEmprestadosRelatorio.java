@@ -3,7 +3,6 @@ package project.report;
 import java.util.List;
 
 import project.Biblioteca;
-import project.models.Cliente;
 import project.models.Emprestimo;
 
 public class LivrosEmprestadosRelatorio implements IReportStrategy {
@@ -25,7 +24,7 @@ public class LivrosEmprestadosRelatorio implements IReportStrategy {
 
         for (Emprestimo emprestimo : emprestimos) {
             livrosEmprestados = true;
-            System.out.format("%20s %10s %30s %10s", emprestimo.getLivro().getTitulo(), emprestimo.getLivro().getIsbn(),
+            System.out.format("%20s %20s %30s %20s", emprestimo.getLivro().getTitulo(), emprestimo.getLivro().getIsbn(),
                     emprestimo.getCliente().getNome(), emprestimo.getDataDevolucao());
             System.out.println();
         }
