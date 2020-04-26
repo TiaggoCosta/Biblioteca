@@ -18,7 +18,7 @@ As classes Livro e Periodico implementam o padrão Builder para criação dos ob
 
 * Facade
 
-🚧 TBD 🚧
+O padrão Facade é utilizado na classe BibliotecaFacade para fornecer um ponto de responsabilidade única para que o cliente consuma. Os métodos da Facade são chamados na classe Main.
 
 * Factory e Strategy
 
