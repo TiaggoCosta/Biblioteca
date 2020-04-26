@@ -106,7 +106,8 @@ public class Menu {
 
         while (ligado) {
             System.out.println("--------------------------- Menu Relatórios ---------------------------");
-            System.out.println("0) Sair \n1) Acervo Livros \n2) Livros Atrasados \n3) Clientes Cadastrados");
+            System.out.println(
+                    "0) Sair \n1) Acervo Livros \n2) Livros Atrasados \n3) Livros Emprestados \n4) Clientes Cadastrados");
             System.out.print("Seleção: ");
 
             opcao = Integer.valueOf(scanner.nextInt());
@@ -115,6 +116,7 @@ public class Menu {
                 case 1:
                 case 2:
                 case 3:
+                case 4:
                     showRelatorio(opcao, reportStrategy);
                     break;
                 case 0:

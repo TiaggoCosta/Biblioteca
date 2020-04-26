@@ -14,6 +14,7 @@ public class ClientesCadastradosRelatorio implements IReportStrategy {
 
     @Override
     public void showData() {
+        boolean clientesCadastrados = false;
         List<Cliente> clientes = Biblioteca.getInstance().getClientes();
 
         System.out.println("----------------------------------------------------------------------------------------");
@@ -22,9 +23,15 @@ public class ClientesCadastradosRelatorio implements IReportStrategy {
         System.out.println("----------------------------------------------------------------------------------------");
 
         for (Cliente cliente : clientes) {
+            clientesCadastrados = true;
             System.out.format("%30s %30s %20s", cliente.getNome(), cliente.getEmail(), cliente.getId());
             System.out.println();
         }
+
+        if (!clientesCadastrados) {
+			System.out.printf("%60s", "Não há Clientes Cadastrados");
+			System.out.println();
+		}
 
         System.out.println("----------------------------------------------------------------------------------------");
     }
