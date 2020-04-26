@@ -34,20 +34,6 @@ public class BibliotecaFacade {
         }
     }
 
-    private Cliente leDadosCliente() {
-        String nome = "";
-        System.out.println("Digite o nome do cliente: ");
-        while (nome.isEmpty())
-            nome = scanner.nextLine();
-
-        String email = "";
-        System.out.println("Digite o email do cliente: ");
-        while (email.isEmpty())
-            email = scanner.next();
-
-        return new Cliente(nome, email);
-    }
-
     public void buscaCliente() {
         Cliente cliente = null;
         boolean pesquisado = false;
@@ -259,6 +245,7 @@ public class BibliotecaFacade {
         }
         System.out.println("Checando status do cliente...");
         // ver se tem debito pendente ou livro atrasado
+        System.out.println("Cliente regularizado");
         System.out.println("Encaminhando para busca de livros...");
         boolean adicionandoLivros = true;
         Livro livroRetirado = null;
@@ -272,9 +259,7 @@ public class BibliotecaFacade {
             System.out.println("1) Sim \n2) Não ");
             System.out.print("Seleção: ");
             int escolha = 0;
-            while (escolha != 1 || escolha != 2) {
                 escolha = scanner.nextInt();
-            }
             if (escolha == 1) {
                 continue;
             } else {
@@ -322,30 +307,42 @@ public class BibliotecaFacade {
         while (adicionandoLivros) {
             for (Emprestimo emprestimo : emprestimosPendentes) {
                 System.err.println("Deseja devolver este livro?");
-                System.out.print(emprestimo.getLivro().toString());
+                System.out.println(emprestimo.getLivro().toString());
                 System.out.println("1) Sim \n2) Não ");
                 System.out.print("Seleção: ");
                 int escolha = 0;
-                while (escolha != 1 || escolha != 2) {
                     escolha = scanner.nextInt();
-                }
                 if (escolha == 1) {
-                    System.out.print("Calculando multa... ");
+                    System.out.println("Calculando multa... ");
                     Double multa = emprestimo.getValorMulta();
                     if (multa > 0) {
-                        System.out.print("Multa de R$ " + multa + " pelo atraso!");
+                        System.out.println("Multa de R$ " + multa + " pelo atraso!");
                     } else {
-                        System.out.print("Entrega no prazo. Sem multa por este empréstimo!");
+                        System.out.println("Entrega no prazo. Sem multa por este empréstimo!");
                     }
                     biblioteca.registraDevolucao(emprestimo.getCliente(), emprestimo.getLivro());
                 } else {
-                    System.out.print("Buscando outro empréstimo...");
+                    System.out.println("Buscando outro empréstimo...");
                 }
             }
-            System.out.print("Sem mais empréstimos para este cliente!");
+            System.out.println("Sem mais empréstimos para este cliente!");
             adicionandoLivros = false;
         }
-        System.out.print("Retornando...");
+        System.out.println("Retornando...");
+    }
+
+    private Cliente leDadosCliente() {
+        String nome = "";
+        System.out.println("Digite o nome do cliente: ");
+        while (nome.isEmpty())
+            nome = scanner.nextLine();
+
+        String email = "";
+        System.out.println("Digite o email do cliente: ");
+        while (email.isEmpty())
+            email = scanner.next();
+
+        return new Cliente(nome, email);
     }
 
     private Livro lerDadosLivro() {
