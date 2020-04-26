@@ -69,28 +69,23 @@ public class Menu {
     }
 
     public void operacoesEmprestimos(BibliotecaFacade facade) {
-        Integer opcao;
-        boolean ligado = true;
+        int opcao = -1;
 
-        while (ligado) {
-            System.out.println("--------------------------- Menu Empréstimos ---------------------------");
-            System.out.println("0) Sair \n1) Registrar Retirada \n2) Registrar Devolução \n3) Consultar Empréstimos");
+        while (opcao != 0) {
+            System.out.println("\n--------------------------- Menu Empréstimos ---------------------------");
+            System.out.println("0) Sair \n1) Registrar Retirada \n2) Registrar Devolução");
             System.out.print("Seleção: ");
 
             opcao = Integer.valueOf(scanner.nextInt());
 
             switch (opcao) {
                 case 0:
-                    ligado = false;
                     break;
                 case 1:
                     facade.registraRetirada();
                     break;
                 case 2:
                     facade.registraDevolucao();
-                    break;
-                case 3:
-                    // facade.consultaEmprestimo;
                     break;
                 default:
                     System.err.println("Opção inválida!");
