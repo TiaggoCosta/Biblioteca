@@ -9,15 +9,14 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         BibliotecaFacade facade = new BibliotecaFacade();
         Menu menu = new Menu();
+        int opt = -1;
 
-        boolean ligado = true;
-
-        while (ligado) {
+        while (opt != 0) {
             display_menu();
-            switch (scanner.nextInt()) {
+            opt = scanner.nextInt();
+            switch (opt) {
                 case 0:
                     System.out.println("Desligando o sistema...");
-                    ligado = false;
                     scanner.close();
                     break;
                 case 1:

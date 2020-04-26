@@ -9,19 +9,17 @@ public class Menu {
     Scanner scanner = new Scanner(System.in);
 
     public void operacoesCliente(BibliotecaFacade facade) {
-        Integer opcao;
-        boolean ligado = true;
+        int opt = -1;
 
-        while (ligado) {
+        while (opt != 0) {
             System.out.println("--------------------------- Menu Clientes ---------------------------");
             System.out.println("0) Sair \n1) Novo Cliente \n2) Pesquisar Clientes \n3) Excluir Clientes");
             System.out.print("Seleção: ");
 
-            opcao = Integer.valueOf(scanner.nextInt());
+            opt = scanner.nextInt();
 
-            switch (opcao) {
+            switch (opt) {
                 case 0:
-                    ligado = false;
                     break;
                 case 1:
                     facade.novoCliente();
@@ -39,19 +37,17 @@ public class Menu {
     }
 
     public void operacoesLivros(BibliotecaFacade facade) {
-        Integer opcao;
-        boolean ligado = true;
+        int opt = -1;
 
-        while (ligado) {
+        while (opt != 0) {
             System.out.println("--------------------------- Menu Livros ---------------------------");
             System.out.println("0) Sair \n1) Novo Livro \n2) Pesquisar Livros \n3) Excluir Livros");
             System.out.print("Seleção: ");
 
-            opcao = Integer.valueOf(scanner.nextInt());
+            opt = scanner.nextInt();
 
-            switch (opcao) {
+            switch (opt) {
                 case 0:
-                    ligado = false;
                     break;
                 case 1:
                     facade.adicionaNovoLivro();
@@ -94,28 +90,25 @@ public class Menu {
     }
 
     public void selecionaRelatorio() {
-        Integer opcao;
+        int opt = -1;
         IReportStrategy reportStrategy = null;
 
-        boolean ligado = true;
-
-        while (ligado) {
+        while (opt != 0) {
             System.out.println("--------------------------- Menu Relatórios ---------------------------");
             System.out.println(
                     "0) Sair \n1) Acervo Livros \n2) Livros Atrasados \n3) Livros Emprestados \n4) Clientes Cadastrados");
             System.out.print("Seleção: ");
 
-            opcao = Integer.valueOf(scanner.nextInt());
+            opt = Integer.valueOf(scanner.nextInt());
 
-            switch (opcao) {
+            switch (opt) {
                 case 1:
                 case 2:
                 case 3:
                 case 4:
-                    showRelatorio(opcao, reportStrategy);
+                    showRelatorio(opt, reportStrategy);
                     break;
                 case 0:
-                    ligado = false;
                     break;
                 default:
                     System.err.println("Opção inválida!");
